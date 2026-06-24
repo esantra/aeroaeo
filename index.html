@@ -54,7 +54,7 @@
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "Sales",
-          "email": "customerservice@unfamousme.com"
+          "email": "hello@aeroaeo.com"
         },
         "sameAs": [
           "https://linkedin.com/company/aeroaeo",
@@ -1182,11 +1182,15 @@
       <span class="section-label">Get Started</span>
       <h2>Book your free AEO audit.</h2>
       <p style="max-width:520px;margin:0 auto 40px;font-size:16px;">Tell us about your business and we'll get back to you within 24 hours with your free AEO visibility report.</p>
-      <form style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:16px;" onsubmit="handleFormSubmit(event)">
-        <input type="text" placeholder="Your name" required style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
-        <input type="email" placeholder="Work email" required style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
-        <input type="text" placeholder="Company / website" style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
-        <select style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;background:white;color:var(--gray-700);">
+      <form action="https://formspree.io/f/mvzjzozz" method="POST"
+            style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:16px;">
+        <!-- Formspree config fields -->
+        <input type="hidden" name="_subject" value="New AEO Audit Request — AeroAEO">
+        <input type="hidden" name="_next" value="https://USERNAME.github.io/aeroaeo/?thanks=audit">
+        <input type="text"   name="name"    placeholder="Your name" required style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
+        <input type="email"  name="email"   placeholder="Work email" required style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
+        <input type="text"   name="company" placeholder="Company / website" style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;">
+        <select name="tier" style="padding:14px 18px;border-radius:10px;border:1px solid var(--gray-200);font-size:15px;font-family:inherit;background:white;color:var(--gray-700);">
           <option value="">Service tier of interest</option>
           <option>Runway ($497/mo)</option>
           <option>Cruising Altitude ($1,497/mo)</option>
@@ -1195,7 +1199,6 @@
         </select>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Request Free AEO Audit ✈</button>
       </form>
-      <p id="form-thanks" style="display:none;margin-top:16px;color:#16a34a;font-weight:600;">✓ Request received! We'll be in touch within 24 hours.</p>
     </div>
   </section>
 
@@ -1277,11 +1280,12 @@
       <div class="newsletter-section">
         <h2>The AEO Weekly</h2>
         <p>AI search is moving fast. Get weekly insights on AEO strategy, what's changing in AI engines, and real-world optimization wins — in under 5 minutes.</p>
-        <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-          <input type="email" placeholder="your@email.com" required id="newsletter-email">
+        <form class="newsletter-form" action="https://formspree.io/f/xqevekew" method="POST">
+          <input type="hidden" name="_subject" value="New Newsletter Subscriber — AeroAEO">
+          <input type="hidden" name="_next" value="https://USERNAME.github.io/aeroaeo/?thanks=newsletter">
+          <input type="email" name="email" placeholder="your@email.com" required>
           <button type="submit" class="btn btn-dark">Subscribe ✈</button>
         </form>
-        <p id="newsletter-thanks" style="display:none;margin-top:12px;color:#16a34a;font-weight:600;">✓ You're on the list! First issue incoming.</p>
       </div>
     </div>
   </section>
@@ -1372,7 +1376,7 @@
         <h4>Company</h4>
         <ul>
           <li><span onclick="showPage('about')">About</span></li>
-          <li><a href="mailto:customerservice@unfamousme.com">Contact</a></li>
+          <li><a href="mailto:hello@aeroaeo.com">Contact</a></li>
           <li><a href="https://linkedin.com/company/aeroaeo" target="_blank">LinkedIn</a></li>
           <li><a href="https://twitter.com/aeroaeo" target="_blank">Twitter / X</a></li>
         </ul>
@@ -1419,28 +1423,6 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  // ─── FORM HANDLERS ───
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    // TODO: wire to your form backend (Formspree, Netlify Forms, etc.)
-    // For now: mailto fallback
-    const form = e.target;
-    const name = form.querySelector('input[type=text]').value;
-    const email = form.querySelector('input[type=email]').value;
-    document.getElementById('form-thanks').style.display = 'block';
-    form.style.display = 'none';
-    // Optional: open mailto
-    window.location.href = `mailto:customerservice@unfamousme.com?subject=Free AEO Audit Request from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}`;
-  }
-
-  function handleNewsletterSubmit(e) {
-    e.preventDefault();
-    const email = document.getElementById('newsletter-email').value;
-    document.getElementById('newsletter-thanks').style.display = 'block';
-    e.target.style.display = 'none';
-    window.location.href = `mailto:customerservice@unfamousme.com?subject=Newsletter Signup&body=New subscriber: ${encodeURIComponent(email)}`;
-  }
-
   // ─── NAVBAR SCROLL EFFECT ───
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
@@ -1471,7 +1453,7 @@
 
   BEFORE GOING LIVE — replace these placeholders:
   ✦ USERNAME  →  your actual GitHub username (in canonical URL + schema)
-  ✦ customerservice@unfamousme.com  →  your real contact email
+  ✦ hello@aeroaeo.com  →  your real contact email
   ✦ Social media URLs  →  your actual profile URLs
   ✦ About page story  →  your personal story
   ✦ Form backend  →  connect to Formspree.io (free) for real form submissions
