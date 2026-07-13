@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AEO Score Calculator | AeroAEO</title>
+<meta name="description" content="Score your website's Answer Engine Optimization readiness in under a minute. Free 10-point AEO Score Calculator from AeroAEO.">
+<meta name="robots" content="index, follow">
+<style>
+  :root {
+    --navy: #0c1a3d; --navy-mid: #162454; --blue: #1d4ed8; --blue-lt: #3b82f6;
+    --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
+    --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+    --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
+    --red: #dc2626; --red-lt: #fee2e2;
+    --green: #16a34a; --green-lt: #dcfce7;
+    --radius: 14px; --shadow: 0 4px 24px rgba(12,26,61,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text); background: var(--gray-50); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--blue); }
+
+  header.site-header { background: var(--navy); padding: 18px 24px; }
+  header.site-header .inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -0.5px; text-decoration: none; }
+  .nav-logo .logo-aeo { color: var(--gold); }
+  header.site-header nav a { color: rgba(255,255,255,0.78); font-size: 14px; font-weight: 500; margin-left: 20px; text-decoration: none; }
+  header.site-header nav a:hover { color: var(--white); }
+
+  .hero { background: var(--navy); color: var(--white); padding: 56px 24px 64px; text-align: center; }
+  .hero .section-label {
+    display: inline-block; background: var(--gold-lt); color: var(--navy);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 6px 14px;
+    border-radius: 999px; margin-bottom: 18px; text-transform: uppercase;
+  }
+  .hero h1 { font-size: 36px; line-height: 1.2; max-width: 640px; margin: 0 auto 16px; }
+  .hero p { color: rgba(255,255,255,0.72); font-size: 17px; max-width: 560px; margin: 0 auto; }
+
+  main { max-width: 720px; margin: -32px auto 80px; padding: 0 24px; }
+
+  .card {
+    background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 36px; margin-bottom: 28px; border: 1px solid var(--gray-200);
+  }
+  .card h2 { font-size: 21px; color: var(--navy); margin-bottom: 6px; }
+  .card .card-sub { color: var(--gray-500); font-size: 14px; margin-bottom: 26px; }
+
+  .checklist { list-style: none; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 0; border-bottom: 1px solid var(--gray-100);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none; width: 22px; height: 22px; min-width: 22px;
+    border: 2px solid var(--gray-200); border-radius: 6px; margin-top: 2px;
+    cursor: pointer; position: relative; transition: all 0.15s ease;
+  }
+  .check-item input[type="checkbox"]:hover { border-color: var(--blue-lt); }
+  .check-item input[type="checkbox"]:checked {
+    background: var(--blue); border-color: var(--blue);
+  }
+  .check-item input[type="checkbox"]:checked::after {
+    content: ""; position: absolute; left: 6px; top: 2px;
+    width: 6px; height: 11px; border: solid var(--white);
+    border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+  .check-item label { cursor: pointer; flex: 1; }
+  .check-item .item-title { font-weight: 700; color: var(--text); font-size: 15.5px; display: block; margin-bottom: 3px; }
+  .check-item .item-desc { color: var(--gray-500); font-size: 14px; }
+  .check-item .item-points {
+    color: var(--navy-mid); background: var(--gray-100); font-size: 12px; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap; margin-left: 8px;
+  }
+
+  .progress-count { text-align: center; color: var(--gray-500); font-size: 14px; margin-top: 20px; }
+
+  .btn-primary {
+    display: block; width: 100%; background: var(--blue); color: var(--white);
+    font-weight: 700; font-size: 16px; padding: 16px 24px; border-radius: 999px;
+    border: none; cursor: pointer; margin-top: 26px; transition: opacity 0.15s ease;
+  }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:active { transform: scale(0.99); }
+
+  /* ── Results ── */
+  #results { display: none; }
+  #results.visible { display: block; animation: fadeUp 0.5s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .score-ring-wrap { display: flex; flex-direction: column; align-items: center; padding: 8px 0 6px; }
+  .score-number { font-size: 64px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .score-out-of { color: var(--gray-500); font-size: 16px; margin-top: 2px; }
+
+  .tier-badge {
+    display: inline-block; font-weight: 800; font-size: 14px; letter-spacing: 0.03em;
+    padding: 8px 20px; border-radius: 999px; margin: 16px 0 22px; text-transform: uppercase;
+  }
+  .tier-invisible { background: var(--red-lt); color: var(--red); }
+  .tier-emerging  { background: var(--gold-lt); color: #92400e; }
+  .tier-ready     { background: var(--sky); color: var(--blue); }
+  .tier-optimized { background: var(--green-lt); color: var(--green); }
+
+  .bar-track { width: 100%; height: 14px; background: var(--gray-100); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }
+  .bar-fill { height: 100%; width: 0%; border-radius: 999px; transition: width 1s cubic-bezier(.22,.61,.36,1); }
+  .bar-fill.tier-invisible-bg { background: var(--red); }
+  .bar-fill.tier-emerging-bg  { background: var(--gold); }
+  .bar-fill.tier-ready-bg     { background: var(--blue); }
+  .bar-fill.tier-optimized-bg { background: var(--green); }
+  .bar-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-500); margin-bottom: 28px; }
+
+  .recommendation {
+    background: var(--gray-50); border-left: 3px solid var(--gold);
+    border-radius: 8px; padding: 20px 22px; margin-bottom: 8px;
+  }
+  .recommendation h3 { font-size: 15px; color: var(--navy); margin-bottom: 8px; }
+  .recommendation p { font-size: 15px; color: var(--gray-700); }
+
+  .gaps { margin-top: 22px; }
+  .gaps h3 { font-size: 14px; color: var(--navy); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .gaps ul { list-style: none; }
+  .gaps li {
+    font-size: 14.5px; color: var(--gray-700); padding: 8px 0 8px 26px; position: relative;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .gaps li:last-child { border-bottom: none; }
+  .gaps li::before { content: "→"; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+  .gaps.all-done { color: var(--green); font-size: 14.5px; }
+
+  .email-row { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+  .email-row input[type="email"] {
+    flex: 1; min-width: 200px; padding: 13px 16px; border: 1px solid var(--gray-200);
+    border-radius: 999px; font-size: 15px; font-family: inherit; color: var(--text);
+  }
+  .email-row input[type="email"]:focus { outline: none; border-color: var(--blue-lt); }
+  .btn-gold {
+    background: var(--gold); color: var(--navy); font-weight: 800; font-size: 15px;
+    padding: 13px 22px; border-radius: 999px; border: none; cursor: pointer; white-space: nowrap;
+  }
+  .btn-gold:hover { opacity: 0.92; }
+  .email-hint { font-size: 12.5px; color: var(--gray-500); margin-top: 8px; }
+  .email-sent { font-size: 14px; color: var(--green); margin-top: 10px; display: none; }
+  .email-sent.visible { display: block; }
+
+  .cta-box {
+    background: var(--navy); border-radius: var(--radius); padding: 30px 32px;
+    margin-top: 28px; text-align: center; color: var(--white);
+  }
+  .cta-box h3 { font-size: 19px; margin-bottom: 8px; }
+  .cta-box p { color: rgba(255,255,255,0.72); font-size: 14.5px; margin-bottom: 16px; }
+  .cta-box a.btn-gold { display: inline-block; text-decoration: none; }
+
+  footer.site-footer {
+    background: var(--navy); color: rgba(255,255,255,0.55); text-align: center;
+    padding: 28px 24px; font-size: 13px;
+  }
+  footer.site-footer a { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 27px; }
+    .card { padding: 24px; }
+    .score-number { font-size: 52px; }
+    .email-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="https://aeroaeo.marketing/" class="nav-logo">Aero<span class="logo-aeo">AEO</span></a>
+    <nav>
+      <a href="https://aeroaeo.marketing/">Home</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="section-label">Free Tool</span>
+  <h1>AEO Score Calculator</h1>
+  <p>Answer 10 quick questions about your website and get an instant 0–100 score for how ready you are to be cited by ChatGPT, Perplexity, and Google AI Overviews.</p>
+</section>
+
+<main>
+  <form class="card" id="aeoForm">
+    <h2>Your AEO Checklist</h2>
+    <p class="card-sub">Check every item that's true for your website today. Each is worth 10 points.</p>
+
+    <ul class="checklist">
+
+      <li class="check-item">
+        <input type="checkbox" id="q1" class="aeo-check" data-label="Schema Markup">
+        <label for="q1">
+          <span class="item-title">Schema Markup</span>
+          <span class="item-desc">Organization and Article/BlogPosting schema (JSON-LD) implemented sitewide.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q2" class="aeo-check" data-label="FAQ Schema">
+        <label for="q2">
+          <span class="item-title">FAQ Schema</span>
+          <span class="item-desc">FAQPage schema markup implemented on key content or support pages.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q3" class="aeo-check" data-label="Entity/About Page &amp; Consistent NAP">
+        <label for="q3">
+          <span class="item-title">Entity / About Page &amp; Consistent NAP</span>
+          <span class="item-desc">A dedicated About or entity page, with name/address/details matching exactly across your site, LinkedIn, and directories.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q4" class="aeo-check" data-label="2,000+ Word Cornerstone Article">
+        <label for="q4">
+          <span class="item-title">2,000+ Word Cornerstone Article</span>
+          <span class="item-desc">At least one comprehensive piece that fully covers a core topic in your niche.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q5" class="aeo-check" data-label="Structured Headings">
+        <label for="q5">
+          <span class="item-title">Structured Headings</span>
+          <span class="item-desc">Clear H1–H3 hierarchy, with headings phrased as the real questions your users ask.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q6" class="aeo-check" data-label="Sitemap Submission">
+        <label for="q6">
+          <span class="item-title">Sitemap Submission</span>
+          <span class="item-desc">An up-to-date XML sitemap submitted to Google Search Console and Bing Webmaster Tools.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q7" class="aeo-check" data-label="AI-Crawler-Friendly robots.txt">
+        <label for="q7">
+          <span class="item-title">AI-Crawler-Friendly robots.txt</span>
+          <span class="item-desc">robots.txt explicitly allows GPTBot, PerplexityBot, ClaudeBot, and Google-Extended.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q8" class="aeo-check" data-label="Glossary Page">
+        <label for="q8">
+          <span class="item-title">Glossary Page</span>
+          <span class="item-desc">A dedicated glossary or definitions page covering key terms in your industry.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q9" class="aeo-check" data-label="Case Study / Original Data">
+        <label for="q9">
+          <span class="item-title">Case Study / Original Data</span>
+          <span class="item-desc">At least one published case study, benchmark, or original research piece.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+      <li class="check-item">
+        <input type="checkbox" id="q10" class="aeo-check" data-label="Active Backlinks &amp; Citations">
+        <label for="q10">
+          <span class="item-title">Active Backlinks &amp; Citations</span>
+          <span class="item-desc">Recent, real mentions or backlinks from third-party sites, directories, or press.</span>
+        </label>
+        <span class="item-points">10 pts</span>
+      </li>
+
+    </ul>
+
+    <p class="progress-count" id="progressCount">0 of 10 selected</p>
+
+    <button type="submit" class="btn-primary">Calculate My AEO Score →</button>
+  </form>
+
+  <div class="card" id="results">
+    <div class="score-ring-wrap">
+      <div class="score-number" id="scoreNumber">0</div>
+      <div class="score-out-of">out of 100</div>
+      <div class="tier-badge" id="tierBadge">—</div>
+    </div>
+
+    <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    <div class="bar-scale">
+      <span>AI-Invisible</span><span>Emerging</span><span>AI-Ready</span><span>AI-Optimized</span>
+    </div>
+
+    <div class="recommendation">
+      <h3>Your Recommendation</h3>
+      <p id="recommendationText"></p>
+    </div>
+
+    <div class="gaps" id="gapsWrap">
+      <h3>What's Holding You Back</h3>
+      <ul id="gapsList"></ul>
+    </div>
+
+    <div class="email-row">
+      <input type="email" id="emailInput" placeholder="you@company.com (optional)">
+      <button type="button" class="btn-gold" id="emailBtn">Email Me My Results</button>
+    </div>
+    <p class="email-hint">We'll never share your email. Used only to send your results and occasional AEO tips.</p>
+    <p class="email-sent" id="emailSent">✓ Opening your email client with your results ready to send...</p>
+
+    <div class="cta-box">
+      <h3>Want a full expert breakdown?</h3>
+      <p>This is the free version. Book a free 40-point AEO audit and I'll show you exactly what's missing and how to fix it — in under 48 hours.</p>
+      <a class="btn-gold" href="https://aeroaeo.marketing/#audit">Get Your Free AEO Audit ✈</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2026 AeroAEO. <a href="https://aeroaeo.marketing/">Back to AeroAEO home</a>.</p>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('aeoForm');
+  var checks = document.querySelectorAll('.aeo-check');
+  var progressCount = document.getElementById('progressCount');
+  var results = document.getElementById('results');
+  var scoreNumberEl = document.getElementById('scoreNumber');
+  var tierBadgeEl = document.getElementById('tierBadge');
+  var barFillEl = document.getElementById('barFill');
+  var recommendationTextEl = document.getElementById('recommendationText');
+  var gapsListEl = document.getElementById('gapsList');
+  var gapsWrapEl = document.getElementById('gapsWrap');
+  var emailInput = document.getElementById('emailInput');
+  var emailBtn = document.getElementById('emailBtn');
+  var emailSent = document.getElementById('emailSent');
+
+  var TIERS = [
+    {
+      max: 39, key: 'invisible', label: 'AI-Invisible',
+      recommendation: "You're currently invisible to AI answer engines. Start with the two highest-leverage moves: implement Organization and Article schema sitewide, and publish one comprehensive cornerstone article on your core topic. Everything else in AEO compounds on top of those two foundations — without them, AI systems have nothing reliable to extract or cite."
+    },
+    {
+      max: 59, key: 'emerging', label: 'Emerging',
+      recommendation: "You have foundational pieces in place, but gaps are capping your citation rate. Prioritize FAQPage schema and a dedicated glossary or entity page next — these are the fastest wins for getting quoted directly inside AI-generated answers rather than being silently absorbed into someone else's synthesis."
+    },
+    {
+      max: 79, key: 'ready', label: 'AI-Ready',
+      recommendation: "You're structurally sound and likely already showing up in some AI answers. Focus now on breadth and depth: more cornerstone content, tightening NAP consistency across every directory and profile, and earning citation-worthy backlinks to compound your entity authority further."
+    },
+    {
+      max: 100, key: 'optimized', label: 'AI-Optimized',
+      recommendation: "You're in strong shape for AI visibility. Maintain momentum with ongoing citation tracking, fresh case studies, and an expanding glossary — the brands that keep publishing structured, well-attributed content are the ones that stay cited as models retrain and retrieval habits shift."
+    }
+  ];
+
+  function updateProgressCount() {
+    var n = 0;
+    checks.forEach(function (c) { if (c.checked) n++; });
+    progressCount.textContent = n + ' of 10 selected';
+  }
+  checks.forEach(function (c) { c.addEventListener('change', updateProgressCount); });
+  updateProgressCount();
+
+  function getTier(score) {
+    for (var i = 0; i < TIERS.length; i++) {
+      if (score <= TIERS[i].max) return TIERS[i];
+    }
+    return TIERS[TIERS.length - 1];
+  }
+
+  function animateNumber(el, to, duration) {
+    var start = 0;
+    var startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + (to - start) * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var checked = [];
+    var unchecked = [];
+    checks.forEach(function (c) {
+      if (c.checked) checked.push(c.getAttribute('data-label'));
+      else unchecked.push(c.getAttribute('data-label'));
+    });
+
+    var score = checked.length * 10;
+    var tier = getTier(score);
+
+    // Reset tier classes
+    tierBadgeEl.className = 'tier-badge tier-' + tier.key;
+    barFillEl.className = 'bar-fill tier-' + tier.key + '-bg';
+
+    tierBadgeEl.textContent = tier.label;
+    recommendationTextEl.textContent = tier.recommendation;
+
+    // Gaps list
+    gapsListEl.innerHTML = '';
+    if (unchecked.length === 0) {
+      gapsWrapEl.querySelector('h3').textContent = 'Nice Work';
+      var li = document.createElement('li');
+      li.className = 'all-done';
+      li.textContent = 'You checked every box. Keep publishing and tracking citations to hold your position.';
+      gapsListEl.appendChild(li);
+    } else {
+      gapsWrapEl.querySelector('h3').textContent = "What's Holding You Back";
+      unchecked.forEach(function (label) {
+        var li = document.createElement('li');
+        li.textContent = label;
+        gapsListEl.appendChild(li);
+      });
+    }
+
+    results.classList.add('visible');
+    animateNumber(scoreNumberEl, score, 800);
+    requestAnimationFrame(function () {
+      barFillEl.style.width = score + '%';
+    });
+
+    emailSent.classList.remove('visible');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Store latest result for the email button
+    form.dataset.score = score;
+    form.dataset.tier = tier.label;
+    form.dataset.unchecked = unchecked.join(', ');
+  });
+
+  emailBtn.addEventListener('click', function () {
+    var score = form.dataset.score || '0';
+    var tier = form.dataset.tier || '';
+    var unchecked = form.dataset.unchecked || 'none';
+    var userEmail = emailInput.value.trim();
+
+    var subject = 'My AEO Score: ' + score + '/100 (' + tier + ')';
+    var body =
+      'AEO Score Calculator Results\n\n' +
+      'Score: ' + score + '/100\n' +
+      'Tier: ' + tier + '\n' +
+      'Gaps: ' + unchecked + '\n\n' +
+      (userEmail ? 'Reply-to email: ' + userEmail + '\n\n' : '') +
+      "I'd like to learn more about closing these gaps.";
+
+    // Self-contained, no backend required: opens the visitor's own email client
+    // pre-addressed to AeroAEO with their score and gaps ready to send.
+    // For production-scale lead capture, wire this field to a form backend
+    // (e.g. a serverless endpoint or ESP) instead of/alongside this mailto link.
+    var mailto = 'mailto:customerservice@unfamousme.com' +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+    emailSent.classList.add('visible');
+  });
+})();
+</script>
+
+</body>
+</html>
