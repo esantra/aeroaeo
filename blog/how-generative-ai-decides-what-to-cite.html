@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How Generative AI Actually Decides What to Cite | AeroAEO</title>
+  <meta name="description" content="Generative AI runs your content through two separate pipelines — retrieval and training — before it ever gets cited. Here's how each one actually works, grounded in Princeton's GEO research.">
+  <meta name="author" content="Amanda Fouts">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aeroaeo.marketing/blog/how-generative-ai-decides-what-to-cite.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Generative AI Actually Decides What to Cite">
+  <meta property="og:description" content="Every AI-generated citation passes through one of two pipelines — retrieval or training. Here's exactly how each one works, and the priority order for optimizing both.">
+  <meta property="og:url" content="https://aeroaeo.marketing/blog/how-generative-ai-decides-what-to-cite.html">
+  <meta property="og:site_name" content="AeroAEO">
+  <meta property="article:published_time" content="2026-07-12">
+  <meta property="article:author" content="Amanda Fouts">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Generative AI Actually Decides What to Cite",
+    "description": "Generative AI runs your content through one of two pipelines — retrieval or training — before it ever gets cited. A breakdown of how each works, grounded in Princeton's peer-reviewed GEO research.",
+    "author": {
+      "@type": "Person",
+      "name": "Amanda Fouts",
+      "jobTitle": "Founder",
+      "worksFor": { "@type": "Organization", "name": "AeroAEO" }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AeroAEO",
+      "logo": { "@type": "ImageObject", "url": "https://aeroaeo.marketing/logo.png" }
+    },
+    "datePublished": "2026-07-12",
+    "dateModified": "2026-07-12",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://aeroaeo.marketing/blog/how-generative-ai-decides-what-to-cite.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is GEO the same thing as AEO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They're overlapping disciplines. GEO (Generative Engine Optimization) is the academic and technical term for optimizing content so generative AI models select and cite it; AEO (Answer Engine Optimization) is the broader practitioner term covering that same goal across all AI-powered answer surfaces. In practice, the tactics are the same."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does traditional SEO still matter if I'm doing AEO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, more than most marketers realize. A large share of what retrieval-based AI engines cite traces back to whatever is already ranking well in the underlying search index, particularly Bing. Technical SEO is now upstream of AEO rather than separate from it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long before I see citation results from optimizing for both pipelines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrieval-pipeline changes can show up in AI answers within 4 to 8 weeks, similar to other AEO work. Training-pipeline changes move much slower, since they only take effect when a model is retrained on a fresh crawl, which can take months."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #0c1a3d; --navy-mid: #162454; --blue: #1d4ed8; --blue-lt: #3b82f6;
+      --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
+      --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+      --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
+      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header.site-header { background: var(--navy); padding: 18px 24px; }
+    header.site-header .inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+    .nav-logo .logo-aeo { color: var(--gold); }
+    header.site-header nav a { color: rgba(255,255,255,0.78); font-size: 14px; font-weight: 500; margin-left: 20px; }
+
+    .article-hero { background: var(--navy); color: var(--white); padding: 64px 24px 56px; text-align: center; }
+    .article-hero .section-label { display: inline-block; background: var(--gold-lt); color: var(--navy); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+    .article-hero h1 { font-size: 36px; line-height: 1.2; max-width: 720px; margin: 0 auto 16px; }
+    .article-hero .byline { color: rgba(255,255,255,0.65); font-size: 15px; }
+    .article-hero .byline a { color: var(--gold); }
+
+    main { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+    main h2 { font-size: 26px; margin-top: 44px; margin-bottom: 14px; color: var(--navy); }
+    main h3 { font-size: 19px; margin-top: 28px; margin-bottom: 10px; color: var(--navy-mid); }
+    main p { margin-bottom: 16px; font-size: 17px; color: var(--gray-700); }
+    main ul, main ol { margin: 0 0 16px 24px; font-size: 17px; color: var(--gray-700); }
+    main li { margin-bottom: 8px; }
+    main strong { color: var(--text); }
+
+    .lede { font-size: 19px; color: var(--gray-700); border-left: 3px solid var(--gold); padding-left: 20px; margin-bottom: 32px; }
+
+    .comparison-table-wrap { overflow-x: auto; margin: 24px 0 32px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    thead th { background: var(--navy); color: var(--white); padding: 14px 16px; text-align: left; font-weight: 700; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+    tbody tr:nth-child(even) { background: var(--gray-50); }
+    tbody td { padding: 13px 16px; color: var(--gray-700); border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--navy-mid); white-space: nowrap; }
+
+    .study-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0 32px; }
+    .study-box .study-label { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 8px; }
+    .study-box p { font-size: 16px; margin-bottom: 10px; }
+    .study-box p:last-child { margin-bottom: 0; }
+
+    .faq-block { background: var(--gray-50); border-radius: var(--radius); padding: 32px; margin-top: 40px; }
+    .faq-block h2 { margin-top: 0; }
+    .faq-item { margin-top: 24px; }
+    .faq-item h3 { margin-top: 0; margin-bottom: 8px; }
+
+    .cta-box { background: var(--sky); border-radius: var(--radius); padding: 32px; margin: 48px 0; text-align: center; }
+    .cta-box h3 { margin-top: 0; color: var(--navy); }
+    .btn-primary { display: inline-block; background: var(--blue); color: var(--white); font-weight: 700; padding: 12px 24px; border-radius: 999px; margin-top: 12px; }
+    .btn-primary:hover { text-decoration: none; opacity: 0.92; }
+
+    footer.site-footer { background: var(--navy); color: rgba(255,255,255,0.55); text-align: center; padding: 32px 24px; font-size: 13px; }
+    footer.site-footer a { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 600px) {
+      .article-hero h1 { font-size: 27px; }
+      main h2 { font-size: 22px; }
+      tbody td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="../index.html" class="nav-logo">Aero<span class="logo-aeo">AEO</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="definitive-guide-to-aeo.html">Full AEO Guide</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article-hero">
+  <span class="section-label">AEO MECHANICS</span>
+  <h1>How Generative AI Actually Decides What to Cite</h1>
+  <p class="byline">By <a href="../index.html">Amanda Fouts</a>, Founder of AeroAEO · Published July 12, 2026</p>
+</section>
+
+<main>
+  <p class="lede">Every citation a generative AI system produces passes through one of exactly two pipelines — <strong>retrieval</strong> or <strong>training</strong> — and most AEO advice only addresses one of them. Understanding both, and which levers move each one, is the difference between guessing at AEO and actually engineering it.</p>
+
+  <h2>The Two Pipelines Every AI Answer Runs Through</h2>
+  <p>When ChatGPT, Perplexity, or Google AI Overviews name your brand in an answer, that citation got there one of two ways. Either the model searched the live web at the moment of the question and pulled your page into its answer (<strong><a href="../aeo-glossary/#retrieval-augmented-generation-rag">retrieval-augmented generation</a></strong>), or your content was already baked into the model's weights during a training crawl months earlier, and it's recalling you from memory.</p>
+  <p>These two pipelines are fed by entirely different crawlers, run on entirely different timelines, and reward different work. Most AEO advice — including a lot of what's published under the "AEO checklist" banner — conflates them. It shouldn't.</p>
+
+  <div class="comparison-table-wrap">
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Retrieval Pipeline</th><th>Training Pipeline</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>What it is</td>
+          <td>A live web search happens first; the model synthesizes an answer from whatever it retrieves in that moment</td>
+          <td>Content gets folded into the model's weights during a scheduled training crawl, long before any question is asked</td>
+        </tr>
+        <tr>
+          <td>Who uses it</td>
+          <td>Perplexity, Google AI Overviews, ChatGPT and Copilot when browsing or search mode is active</td>
+          <td>Every model's core trained knowledge — what ChatGPT or Claude "just knows" without searching</td>
+        </tr>
+        <tr>
+          <td>Fed by</td>
+          <td>Search-indexing bots (OAI-SearchBot, PerplexityBot, Claude-SearchBot) plus the underlying search index they draw from — frequently Bing</td>
+          <td>Training bots (GPTBot, ClaudeBot, Google-Extended, CCBot) on scheduled, infrequent crawls</td>
+        </tr>
+        <tr>
+          <td>What you optimize</td>
+          <td>Technical SEO health and on-page extractability — schema, direct-answer formatting, fresh dates</td>
+          <td>Entity authority and third-party mentions — being cited and named on other credible sites, not just your own</td>
+        </tr>
+        <tr>
+          <td>Time to move</td>
+          <td>Weeks — a re-crawled, better-structured page can start getting cited quickly</td>
+          <td>Months — nothing changes until the model itself retrains on a new crawl</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Pipeline One: What Wins in Retrieval, Right Now</h2>
+  <p>Retrieval-based answers still run through a conventional search index before synthesis happens — which is why industry benchmarking has repeatedly found that a large share of ChatGPT's citations trace back to whatever is already ranking near the top of Bing's results. If your technical SEO is weak, you're filtered out before an AI model ever gets the chance to consider quoting you.</p>
+  <p>Once you clear that bar, three things determine whether you're the source that gets pulled into the final answer instead of a competitor: your <strong>robots.txt</strong> has to explicitly allow the search-indexing and real-time fetcher bots (a page a crawler can't reach can't be cited, full stop); your content needs to be freshly dated, since a large majority of AI crawler activity concentrates on pages published or meaningfully updated within the past year; and your answers need to be extractable — stated in clean, direct, self-contained passages rather than buried in narrative a model has to interpret.</p>
+
+  <h2>Pipeline Two: What Compounds in Training, Over Time</h2>
+  <p>The training pipeline plays a longer, quieter game. GPTBot, ClaudeBot, Google-Extended, and CCBot crawl the web on their own schedules to build the next version of each model, and what gets absorbed into that training data shapes what the model "knows" about your brand without ever searching for it. This is where <a href="../aeo-glossary/#entity-authority">entity authority</a> does its heaviest lifting.</p>
+  <p>The counterintuitive part: being named and described consistently on <em>other</em> credible sites — press mentions, directories, guest appearances, comparison articles written by third parties — appears to move this needle more than backlinks to your own domain do. A backlink says "here's a link." A mention says "this brand is a known entity in this category," which is closer to what a model is actually trying to learn during training.</p>
+
+  <div class="study-box">
+    <span class="study-label">The Research Behind This</span>
+    <p>The clearest evidence that AEO tactics actually work comes from Princeton's <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">"GEO: Generative Engine Optimization"</a> paper (Aggarwal et al., presented at KDD 2024) — the first peer-reviewed, controlled study of the field. Testing roughly 10,000 queries, the researchers found that targeted content changes lifted visibility in AI-generated answers by 22–41%, with the single biggest gains coming from three specific moves: <strong>adding cited sources, adding statistics, and adding direct quotations</strong> to a page.</p>
+    <p>The study also found what the authors call an "Equalizer Effect": these optimizations helped lower-ranked, less-established sources disproportionately more than already-dominant ones — a page starting from a weaker position saw visibility gains over 100% higher than a page that was already prominent. In plain terms, if you're not yet a household name in your category, this is the single highest-leverage thing you can do.</p>
+  </div>
+
+  <h2>The Priority Stack: What to Do, In Order</h2>
+  <ol>
+    <li><strong>Unblock the crawlers.</strong> Confirm robots.txt explicitly allows GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, and Google-Extended. Free, five minutes, and nothing downstream works without it.</li>
+    <li><strong>Shore up technical SEO, especially for Bing.</strong> Retrieval-based citation rides on top of a conventional search index — clean crawlability and indexing are now upstream of AEO, not a separate workstream.</li>
+    <li><strong>Add sources, stats, and quotations to your existing pages.</strong> This is the single highest-measured-impact move from controlled research, and it's usually a rewrite, not a rebuild.</li>
+    <li><strong>Write declaratively.</strong> Cut hedge phrases like "we believe" or "in our opinion." Flat, sourced statements extract more cleanly than caveated ones.</li>
+    <li><strong>Build entity authority off-site.</strong> Prioritize being named on other credible sites over collecting backlinks — that's what actually feeds the training pipeline.</li>
+    <li><strong>Keep cornerstone content current.</strong> Re-date and refresh your most important pages at least annually; stale pages quietly lose citation share even when the facts haven't changed.</li>
+  </ol>
+  <p>Notice that only the first two items are things you'd find on a traditional SEO checklist. The rest — citing sources inside your own content, chasing mentions instead of just links, writing for extraction instead of persuasion — is the part that's genuinely specific to AEO. If you want the fuller tactical breakdown behind each of these, <a href="definitive-guide-to-aeo.html">The Definitive Guide to AEO</a> walks through implementation step by step, and our <a href="../aeo-glossary/">AEO Glossary</a> defines every term used here in more depth.</p>
+
+  <div class="faq-block">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>Is GEO the same thing as AEO?</h3>
+      <p>They're overlapping disciplines. GEO (Generative Engine Optimization) is the academic and technical term for optimizing content so generative AI models select and cite it; AEO (Answer Engine Optimization) is the broader practitioner term covering that same goal across all AI-powered answer surfaces. In practice, the tactics are the same.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Does traditional SEO still matter if I'm doing AEO?</h3>
+      <p>Yes, more than most marketers realize. A large share of what retrieval-based AI engines cite traces back to whatever is already ranking well in the underlying search index, particularly Bing. Technical SEO is now upstream of AEO rather than separate from it.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How long before I see citation results from optimizing for both pipelines?</h3>
+      <p>Retrieval-pipeline changes can show up in AI answers within 4 to 8 weeks, similar to other AEO work. Training-pipeline changes move much slower, since they only take effect when a model is retrained on a fresh crawl, which can take months.</p>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Want to know exactly where your site stands in both pipelines?</h3>
+    <p>My free 40-point AEO audit checks your crawler access, technical SEO health, extractability, and entity authority — and tells you which pipeline to fix first.</p>
+    <a class="btn-primary" href="../index.html">Get Your Free AEO Audit ✈</a>
+  </div>
+
+  <p>Related reading: <a href="what-is-aeo.html">What Is AEO?</a> · <a href="aeo-vs-seo.html">AEO vs. SEO: Key Differences</a> · <a href="5-reasons-your-business-needs-aeo.html">5 Reasons Your Business Needs AEO in 2026</a> · <a href="../aeo-score-calculator.html">Free AEO Score Calculator</a></p>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2026 AeroAEO. Written by <a href="../index.html">Amanda Fouts</a>. <a href="../index.html">Back to AeroAEO home</a>.</p>
+</footer>
+
+</body>
+</html>
