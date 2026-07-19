@@ -107,11 +107,15 @@
 
 <main>
   <div id="candidate-form">
+    <label style="display:block;font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:6px;">Access code</label>
+    <input type="text" id="accessCode" placeholder="Sent to you after payment" required>
     <label style="display:block;font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:6px;">Your name (as it should appear on your certificate)</label>
     <input type="text" id="candidateName" placeholder="Jane Marketer" required>
     <label style="display:block;font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:6px;">Your email</label>
     <input type="email" id="candidateEmail" placeholder="you@company.com" required>
     <button class="btn-primary" onclick="startExam()">Begin Exam ✈</button>
+    <p id="codeError" style="display:none;color:var(--red);font-size:13px;margin-top:10px;text-align:center;">That access code isn't valid. Check the email you received after enrolling, or <a href="marketer-certification.html">enroll here</a> if you haven't paid yet.</p>
+    <p style="font-size:12px;color:var(--gray-500);margin-top:10px;text-align:center;">No code? <a href="marketer-certification.html">Enroll for $199 →</a></p>
   </div>
 
   <form id="examForm" style="display:none;"></form>
@@ -242,12 +246,30 @@
   ];
 
   const PASS_THRESHOLD = 0.8;
+  // Soft access gate — not real authentication (this is client-side JS, so a
+  // determined visitor could find this value in page source). It exists to
+  // stop casual/direct-link access, not to replace real payment verification.
+  // Change this string any time; update marketer-certification-thankyou.html to match.
+  const ACCESS_CODE = "AEO2026CERT";
   let candidateName = "", candidateEmail = "";
 
+  // Auto-fill the code if it arrives via ?code=... (the thank-you page links here that way)
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get('code');
+    if (codeParam) document.getElementById('accessCode').value = codeParam;
+  });
+
   function startExam() {
+    const enteredCode = document.getElementById('accessCode').value.trim();
     candidateName = document.getElementById('candidateName').value.trim();
     candidateEmail = document.getElementById('candidateEmail').value.trim();
-    if (!candidateName || !candidateEmail) { alert('Please enter your name and email before starting.'); return; }
+    if (!enteredCode || !candidateName || !candidateEmail) { alert('Please enter your access code, name, and email before starting.'); return; }
+    if (enteredCode.toUpperCase() !== ACCESS_CODE) {
+      document.getElementById('codeError').style.display = 'block';
+      return;
+    }
+    document.getElementById('codeError').style.display = 'none';
 
     document.getElementById('candidate-form').style.display = 'none';
     const form = document.getElementById('examForm');
