@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AEO Certified Marketer — $199 Professional Certification | AeroAEO</title>
-  <meta name="description" content="Become an AEO Certified Marketer. An 8-module study program and 60-question proctored-style exam covering Answer Engine Optimization strategy, schema, entity authority, and measurement. $199, lifetime credential.">
+  <title>AEO Certified Marketer — $199 Founding Price | AeroAEO</title>
+  <meta name="description" content="Become an AEO Certified Marketer. An 8-module study program and 60-question exam covering Answer Engine Optimization strategy, schema, entity authority, and measurement. Founding price $199 — rises to $299 after the first 25 seats.">
   <meta name="author" content="Amanda Fouts">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://aeroaeo.marketing/marketer-certification.html">
@@ -39,12 +39,12 @@
           {
             "@type": "Question",
             "name": "How much does the AEO Certified Marketer program cost?",
-            "acceptedAnswer": { "@type": "Answer", "text": "$199, one-time, for lifetime access to the study guide and unlimited exam attempts." }
+            "acceptedAnswer": { "@type": "Answer", "text": "$199 for the first 25 founding-cohort seats, one-time payment, for lifetime access to the study guide and unlimited exam attempts. Price rises to $299 after the founding cohort fills." }
           },
           {
             "@type": "Question",
-            "name": "How long is the exam and what score do I need to pass?",
-            "acceptedAnswer": { "@type": "Answer", "text": "60 multiple-choice questions across 8 modules. A score of 80% (48/60) is required to pass. The exam is untimed and can be retaken at no additional cost." }
+            "name": "What happens if I don't pass the exam?",
+            "acceptedAnswer": { "@type": "Answer", "text": "You can retake the exam as many times as you need at no additional cost. There is no time limit and no cap on attempts." }
           },
           {
             "@type": "Question",
@@ -63,13 +63,20 @@
       --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
       --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
       --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
-      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10);
+      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10); --green: #16a34a;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; padding-top: 0; }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    /* Sticky mini CTA bar */
+    #stickyBar { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: var(--navy); border-bottom: 2px solid var(--gold); padding: 10px 20px; display: none; align-items: center; justify-content: space-between; gap: 16px; }
+    #stickyBar.show { display: flex; }
+    #stickyBar .sb-left { color: var(--white); font-size: 14px; font-weight: 700; }
+    #stickyBar .sb-left span { color: var(--gold); }
+    #stickyBar .btn-mini { background: var(--gold); color: var(--navy); font-weight: 800; padding: 9px 18px; border-radius: 999px; font-size: 14px; white-space: nowrap; }
 
     header.site-header { background: var(--navy); padding: 18px 24px; }
     header.site-header .inner { max-width: 880px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
@@ -77,18 +84,26 @@
     .nav-logo .logo-aeo { color: var(--gold); }
     header.site-header nav a { color: rgba(255,255,255,0.78); font-size: 14px; font-weight: 500; margin-left: 20px; }
 
-    .hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3168 60%, #0d2247 100%); color: var(--white); padding: 64px 24px 56px; text-align: center; }
+    .urgency-banner { background: var(--gold); color: var(--navy); text-align: center; padding: 10px 20px; font-size: 14px; font-weight: 800; }
+    .urgency-banner span { text-decoration: underline; }
+
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3168 60%, #0d2247 100%); color: var(--white); padding: 56px 24px 48px; text-align: center; }
     .hero .section-label { display: inline-block; background: var(--gold-lt); color: var(--navy); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
-    .hero h1 { font-size: 38px; line-height: 1.2; max-width: 700px; margin: 0 auto 16px; }
-    .hero p.sub { color: rgba(255,255,255,0.75); font-size: 18px; max-width: 580px; margin: 0 auto 28px; }
-    .badge-preview { width: 130px; margin: 0 auto 24px; }
-    .btn-primary { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 800; padding: 16px 32px; border-radius: 999px; font-size: 17px; }
+    .hero h1 { font-size: 40px; line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
+    .hero p.sub { color: rgba(255,255,255,0.75); font-size: 18px; max-width: 580px; margin: 0 auto 24px; }
+    .badge-preview { width: 120px; margin: 0 auto 20px; }
+    .btn-primary { display: inline-block; background: var(--gold); color: var(--navy); font-weight: 800; padding: 17px 36px; border-radius: 999px; font-size: 18px; }
     .btn-primary:hover { text-decoration: none; opacity: 0.92; transform: translateY(-1px); }
     .price-note { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.6); }
+    .seats-note { display: inline-block; background: rgba(255,255,255,0.1); color: var(--gold-lt); font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px; margin-bottom: 20px; }
 
     main { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
     main h2 { font-size: 26px; margin-bottom: 18px; color: var(--navy); text-align: center; }
     main p { margin-bottom: 16px; font-size: 17px; color: var(--gray-700); }
+
+    .pain-box { background: var(--gray-50); border-left: 4px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; padding: 24px 28px; margin: 24px 0 40px; }
+    .pain-box p:last-child { margin-bottom: 0; }
+    .pain-box strong { color: var(--text); }
 
     .module-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 32px 0; }
     .module-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 18px 20px; }
@@ -100,9 +115,36 @@
     .stats-row div { font-size: 32px; font-weight: 900; color: var(--navy); }
     .stats-row span { display: block; font-size: 13px; color: var(--gray-500); font-weight: 500; margin-top: 4px; }
 
-    .pricing-card { background: var(--navy); color: var(--white); border-radius: 20px; padding: 44px; text-align: center; margin: 48px 0; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 24px 0 40px; font-size: 14px; }
+    .compare-table th, .compare-table td { padding: 12px 14px; text-align: center; border: 1px solid var(--gray-200); }
+    .compare-table th { background: var(--navy); color: var(--white); font-size: 13px; }
+    .compare-table td:first-child, .compare-table th:first-child { text-align: left; font-weight: 600; color: var(--navy-mid); }
+    .compare-table .yes { color: var(--green); font-weight: 800; }
+    .compare-table .no { color: var(--gray-500); }
+    .compare-table .highlight-col { background: var(--gold-lt); font-weight: 700; }
+
+    .founder-box { display: flex; gap: 20px; align-items: flex-start; background: var(--gray-50); border-radius: var(--radius); padding: 28px; margin: 40px 0; }
+    .founder-avatar { flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .founder-box p { margin-bottom: 0; font-size: 15px; }
+    .founder-box .name { font-weight: 800; color: var(--navy); font-size: 15px; margin-bottom: 4px; }
+
+    .bonus-stack { background: var(--white); border: 2px solid var(--gold); border-radius: var(--radius); padding: 28px; margin: 40px 0; }
+    .bonus-stack h3 { color: var(--navy); font-size: 18px; margin-bottom: 16px; text-align: center; }
+    .bonus-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--gray-200); }
+    .bonus-item:last-child { border-bottom: none; }
+    .bonus-check { color: var(--green); font-weight: 900; font-size: 18px; flex-shrink: 0; }
+    .bonus-item strong { color: var(--text); }
+    .bonus-item span.val { color: var(--gray-500); font-size: 13px; }
+
+    .pricing-card { background: var(--navy); color: var(--white); border-radius: 20px; padding: 44px; text-align: center; margin: 48px 0; position: relative; overflow: hidden; }
+    .pricing-card .founding-tag { position: absolute; top: 18px; right: -38px; background: var(--gold); color: var(--navy); font-weight: 800; font-size: 12px; padding: 5px 44px; transform: rotate(35deg); }
+    .pricing-card .amt-row { display: flex; align-items: baseline; justify-content: center; gap: 12px; }
     .pricing-card .amt { font-size: 56px; font-weight: 900; }
     .pricing-card .amt span { font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.6); }
+    .pricing-card .strike { font-size: 22px; color: rgba(255,255,255,0.4); text-decoration: line-through; }
+    .pricing-card .seats-left { margin: 14px 0 6px; font-size: 14px; font-weight: 700; color: var(--gold-lt); }
+    .seat-bar { max-width: 320px; margin: 0 auto 20px; background: rgba(255,255,255,0.12); border-radius: 999px; height: 8px; overflow: hidden; }
+    .seat-bar-fill { height: 100%; background: var(--gold); border-radius: 999px; }
     .pricing-card ul { list-style: none; text-align: left; max-width: 380px; margin: 24px auto; }
     .pricing-card li { padding: 8px 0; font-size: 15px; color: rgba(255,255,255,0.85); }
     .pricing-card li::before { content: "✓ "; color: var(--gold); font-weight: 800; }
@@ -113,6 +155,12 @@
     .faq-item h3 { font-size: 16px; color: var(--navy-mid); margin-bottom: 6px; }
     .faq-item p { font-size: 15px; color: var(--gray-700); margin: 0; }
 
+    .quiz-cta { background: var(--sky); border-radius: var(--radius); padding: 24px 28px; margin: 40px 0; text-align: center; }
+    .quiz-cta p { margin-bottom: 12px; }
+    .btn-outline { display: inline-block; border: 2px solid var(--navy); color: var(--navy); font-weight: 700; padding: 10px 22px; border-radius: 999px; font-size: 14px; }
+
+    .final-cta { text-align: center; margin: 56px 0 24px; }
+
     .already-enrolled { text-align: center; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--gray-200); }
     .already-enrolled a { font-weight: 700; margin: 0 10px; }
 
@@ -120,13 +168,20 @@
     footer.site-footer a { color: rgba(255,255,255,0.8); }
 
     @media (max-width: 640px) {
-      .hero h1 { font-size: 27px; }
+      .hero h1 { font-size: 28px; }
       .module-grid { grid-template-columns: 1fr; }
       .stats-row { gap: 24px; }
+      .founder-box { flex-direction: column; }
+      #stickyBar { flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
 <body>
+
+<div id="stickyBar">
+  <div class="sb-left">AEO Certified Marketer — <span id="stickyPrice">$199</span> founding price · <span id="stickySeats">25 seats left</span></div>
+  <a class="btn-mini" id="stickyBtn" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now →</a>
+</div>
 
 <header class="site-header">
   <div class="inner">
@@ -138,16 +193,25 @@
   </div>
 </header>
 
+<div class="urgency-banner">🔥 Founding Price: <span id="bannerText">$199 for the first 25 marketers — 25 seats remaining</span>. Price rises to $299 after that.</div>
+
 <section class="hero">
   <span class="section-label">PROFESSIONAL CERTIFICATION</span>
   <img class="badge-preview" src="assets/aeo-certified-marketer-badge.svg" alt="AEO Certified Marketer badge">
-  <h1>Become an AEO Certified Marketer.</h1>
-  <p class="sub">The credential that proves you can actually run Answer Engine Optimization — not just talk about it. 8 modules, one 60-question exam, a verified badge for your resume and LinkedIn.</p>
-  <a class="btn-primary" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now — $199 ✈</a>
-  <p class="price-note">One-time payment · Lifetime access · Unlimited exam attempts</p>
+  <h1>Prove you can actually do AEO — not just talk about it.</h1>
+  <p class="sub">The AEO Certified Marketer credential: 8 modules, one 60-question exam, a verified badge for your resume, LinkedIn, and client pitches. Unlimited retakes — you genuinely cannot fail to get certified, you just keep going until you pass.</p>
+  <div class="seats-note" id="seatsNote">🔥 Founding cohort: 25 of 25 seats left at $199</div>
+  <br>
+  <a class="btn-primary enroll-btn" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now — $199 ✈</a>
+  <p class="price-note">One-time payment · Lifetime access · Unlimited exam attempts · Price rises to $299 after founding cohort</p>
 </section>
 
 <main>
+  <div class="pain-box">
+    <p><strong>Every marketer says they "understand AI search" right now.</strong> Almost none of them can prove it. When a client or hiring manager asks "how do I know you actually know AEO and aren't just repeating LinkedIn buzzwords," most marketers have nothing to show — no framework, no test, no badge, nothing that separates them from someone who read three blog posts last week.</p>
+    <p>The AEO Certified Marketer exam exists to close that gap. It's not a "watch a video and get a badge" credential — it's 60 questions across 8 real domains, graded instantly, with a hard 80% bar. Passing it is proof, not participation.</p>
+  </div>
+
   <h2>Why get certified?</h2>
   <p>AEO is the fastest-growing specialty in marketing right now, and there's no established credential that separates practitioners who actually understand the mechanics — schema, the retrieval/training pipeline split, entity authority, ethical GEO — from people who've just read a few blog posts. The AEO Certified Marketer badge is that credential: a verified, exam-tested proof of competency you can put on your resume, LinkedIn, or agency site.</p>
 
@@ -158,7 +222,22 @@
     <div>∞<span>retake attempts</span></div>
   </div>
 
-  <h2>What's covered</h2>
+  <h2>How it stacks up</h2>
+  <table class="compare-table">
+    <thead>
+      <tr><th>What you get</th><th>Teaching yourself from blog posts</th><th>Generic "AI marketing" course</th><th class="highlight-col">AEO Certified Marketer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Structured 8-module curriculum</td><td class="no">✗</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>AEO-specific (not generic AI marketing)</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Graded exam with a real pass bar</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Verifiable badge + certificate</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Unlimited retakes, no extra cost</td><td class="no">—</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Covers ethics &amp; black-hat GEO risk</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>One-time cost</td><td class="yes">Free</td><td class="no">$300–$1,500+</td><td class="yes">$199</td></tr>
+    </tbody>
+  </table>
+
   <div class="module-grid">
     <div class="module-card"><span class="num">MODULE 1</span><h3>AEO Fundamentals</h3><p>What AEO is, why it matters now, the three-phase process.</p></div>
     <div class="module-card"><span class="num">MODULE 2</span><h3>Technical AEO & Schema</h3><p>Schema markup, robots.txt, crawler access, extractability.</p></div>
@@ -170,20 +249,48 @@
     <div class="module-card"><span class="num">MODULE 8</span><h3>AEO vs. SEO Strategy</h3><p>How to position and sell AEO alongside — not instead of — SEO.</p></div>
   </div>
 
+  <div class="founder-box">
+    <div class="founder-avatar">✈</div>
+    <div>
+      <div class="name">Built by Amanda Fouts, Founder of AeroAEO</div>
+      <p>This isn't a repackaged SEO course with "AEO" pasted on top. The curriculum comes directly from building AeroAEO itself — the same 10-point audit framework used in AeroAEO's free business certification, the same technical playbook (schema, robots.txt, the retrieval/training split) implemented on this very site. You're being tested on a framework that's actually been run in production, not theorized about.</p>
+    </div>
+  </div>
+
+  <div class="bonus-stack">
+    <h3>What's included when you enroll today</h3>
+    <div class="bonus-item"><span class="bonus-check">✓</span><div><strong>Full 8-module written study guide</strong><br><span class="val">Lifetime access, including future updates as AEO evolves</span></div></div>
+    <div class="bonus-item"><span class="bonus-check">✓</span><div><strong>60-question certification exam</strong><br><span class="val">Unlimited retakes at no extra cost — you cannot fail to eventually get certified</span></div></div>
+    <div class="bonus-item"><span class="bonus-check">✓</span><div><strong>Instant module-by-module score breakdown</strong><br><span class="val">Know exactly what to review if you don't pass the first time</span></div></div>
+    <div class="bonus-item"><span class="bonus-check">✓</span><div><strong>Printable certificate + embeddable digital badge</strong><br><span class="val">For your resume, LinkedIn, and client proposals</span></div></div>
+    <div class="bonus-item"><span class="bonus-check">✓</span><div><strong>Founding-cohort pricing locked in for life</strong><br><span class="val">Pay $199 once now — even after the price rises to $299, your access never expires or needs renewal</span></div></div>
+  </div>
+
   <div class="roadmap-note">
-    <strong>On the roadmap:</strong> video walkthroughs for each module are planned as a future addition. The program is fully complete and gradeable today using the written study guide and exam below — video will be layered in as a bonus, not a requirement to get certified.
+    <strong>On the roadmap:</strong> video walkthroughs for each module are planned as a future addition, free for everyone already enrolled. The program is fully complete and gradeable today using the written study guide and exam — video will be layered in as a bonus, not a requirement to get certified.
   </div>
 
   <div class="pricing-card">
-    <div class="amt">$199 <span>one-time</span></div>
+    <span class="founding-tag">FOUNDING</span>
+    <div class="amt-row">
+      <span class="strike">$299</span>
+      <div class="amt" id="cardPrice">$199 <span>one-time</span></div>
+    </div>
+    <div class="seats-left" id="cardSeatsText">25 of 25 founding seats remaining</div>
+    <div class="seat-bar"><div class="seat-bar-fill" id="seatBarFill" style="width:100%;"></div></div>
     <ul>
       <li>Full 8-module written study guide</li>
       <li>60-question certification exam, unlimited retakes</li>
       <li>Instant module-by-module score breakdown</li>
       <li>Printable certificate + embeddable digital badge</li>
-      <li>Lifetime access, no subscription</li>
+      <li>Lifetime access, no subscription, price locked in forever</li>
     </ul>
-    <a class="btn-primary" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now — $199 ✈</a>
+    <a class="btn-primary enroll-btn" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now — $199 ✈</a>
+  </div>
+
+  <div class="quiz-cta">
+    <p><strong>Not sure you're ready yet?</strong> Take the free 2-minute readiness quiz first — it'll show you where you stand and whether you're likely to pass on your first attempt.</p>
+    <a class="btn-outline" href="marketer-readiness-quiz.html">Take the Free Readiness Quiz →</a>
   </div>
 
   <h2>FAQ</h2>
@@ -192,16 +299,25 @@
     <p>A paid, self-paced certification: an 8-module study guide plus a 60-question exam. Score 80% or higher (48/60) to earn your verified badge and certificate.</p>
   </div>
   <div class="faq-item">
+    <h3>What if I don't pass on my first attempt?</h3>
+    <p>Retake as many times as you need at no extra cost, with no cap. You'll see a module-by-module breakdown after every attempt so you know exactly what to review before your next try. Practically speaking, that means you cannot fail to eventually get certified — you just keep going.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Why does the price go up later?</h3>
+    <p>The first 25 seats are priced at $199 to reward early adopters while the program is new. Once those 25 are claimed, the price moves to $299 for everyone after. Founding-cohort members keep their access forever regardless of future price changes.</p>
+  </div>
+  <div class="faq-item">
     <h3>How is this different from AeroAEO's free business certification?</h3>
     <p>The free <a href="certification.html">AEO Certification</a> audits a business's website against the 10-point framework. This program certifies a marketer's own knowledge and skills — it's a personal professional credential, not a site audit.</p>
   </div>
   <div class="faq-item">
-    <h3>What if I don't pass on my first attempt?</h3>
-    <p>Retake as many times as you need at no extra cost. You'll see a module-by-module breakdown after every attempt so you know exactly what to review.</p>
-  </div>
-  <div class="faq-item">
     <h3>Is the exam timed?</h3>
     <p>No. Take as long as you need, and keep the study guide open in another tab while you work through it.</p>
+  </div>
+
+  <div class="final-cta">
+    <a class="btn-primary enroll-btn" href="https://buy.stripe.com/dRm7sK5LzaPa5D68W9fjG00" target="_blank" rel="noopener">Enroll Now — $199 ✈</a>
+    <p class="price-note" style="color:var(--gray-500);">Founding price ends after seat 25 · one-time payment · lifetime access</p>
   </div>
 
   <div class="already-enrolled">
@@ -213,6 +329,42 @@
 <footer class="site-footer">
   <p>&copy; 2026 AeroAEO. <a href="index.html">Back to AeroAEO home</a>.</p>
 </footer>
+
+<script>
+  // ══════════════════════════════════════════════════════════════
+  // FOUNDING PRICE TRACKER — manually updated, not automated.
+  // There is no backend/Stripe webhook wired up, so this number does
+  // NOT move on its own. Stripe emails you on every sale — each time
+  // that happens, increment SEATS_SOLD below by 1 and save the file.
+  // When SEATS_SOLD reaches SEATS_TOTAL, you must ALSO go into Stripe
+  // and change the actual Payment Link price to $299 (this page's
+  // copy does not change what Stripe charges — Stripe is the source
+  // of truth for the real price, this is just the on-page display).
+  // ══════════════════════════════════════════════════════════════
+  const SEATS_TOTAL = 25;
+  const SEATS_SOLD = 0;   // ← update this number after each sale
+
+  const seatsLeft = Math.max(SEATS_TOTAL - SEATS_SOLD, 0);
+  const pct = Math.round((seatsLeft / SEATS_TOTAL) * 100);
+  const soldOut = seatsLeft === 0;
+
+  document.getElementById('seatsNote').textContent = soldOut
+    ? '🎉 Founding price sold out — now $299'
+    : `🔥 Founding cohort: ${seatsLeft} of ${SEATS_TOTAL} seats left at $199`;
+  document.getElementById('bannerText').textContent = soldOut
+    ? 'Founding price sold out — standard price is now $299'
+    : `$199 for the first 25 marketers — ${seatsLeft} seat${seatsLeft===1?'':'s'} remaining`;
+  document.getElementById('cardSeatsText').textContent = soldOut
+    ? 'Founding cohort sold out'
+    : `${seatsLeft} of ${SEATS_TOTAL} founding seats remaining`;
+  document.getElementById('seatBarFill').style.width = pct + '%';
+  document.getElementById('stickySeats').textContent = soldOut ? 'sold out' : `${seatsLeft} seats left`;
+
+  // Sticky bar shows after scrolling past the hero
+  window.addEventListener('scroll', () => {
+    document.getElementById('stickyBar').classList.toggle('show', window.scrollY > 500);
+  });
+</script>
 
 </body>
 </html>

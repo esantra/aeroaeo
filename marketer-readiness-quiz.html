@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free AEO Marketer Readiness Quiz | AeroAEO</title>
+  <meta name="description" content="10 questions, 2 minutes. Find out if you're ready to pass the AEO Certified Marketer exam.">
+  <meta name="author" content="Amanda Fouts">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aeroaeo.marketing/marketer-readiness-quiz.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free AEO Marketer Readiness Quiz">
+  <meta property="og:description" content="10 questions, 2 minutes. See if you're ready for the AEO Certified Marketer exam.">
+  <meta property="og:url" content="https://aeroaeo.marketing/marketer-readiness-quiz.html">
+  <meta property="og:site_name" content="AeroAEO">
+
+  <style>
+    :root {
+      --navy: #0c1a3d; --navy-mid: #162454; --blue: #1d4ed8;
+      --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
+      --gray-50: #f8fafc; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
+      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10); --green: #16a34a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--gray-50); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); }
+
+    header.site-header { background: var(--navy); padding: 18px 24px; }
+    header.site-header .inner { max-width: 680px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { color: var(--white); font-weight: 800; font-size: 20px; text-decoration:none; }
+    .nav-logo .logo-aeo { color: var(--gold); }
+
+    .hero { background: var(--navy); color: var(--white); padding: 48px 24px 40px; text-align: center; }
+    .hero .section-label { display: inline-block; background: var(--gold-lt); color: var(--navy); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 999px; margin-bottom: 16px; }
+    .hero h1 { font-size: 30px; margin-bottom: 12px; }
+    .hero p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto; }
+
+    main { max-width: 620px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .btn-primary { display: inline-block; background: var(--blue); color: var(--white); font-weight: 700; padding: 13px 26px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; text-decoration: none; }
+    .btn-primary:hover { opacity: 0.92; }
+
+    .q-card { background: var(--white); border-radius: var(--radius); padding: 24px 26px; margin-bottom: 14px; box-shadow: var(--shadow); }
+    .q-num { color: var(--gray-500); font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .q-text { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .q-options label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; border-radius: 8px; cursor: pointer; font-size: 15px; color: var(--gray-700); }
+    .q-options label:hover { background: var(--gray-50); }
+    .q-options input { margin-top: 3px; }
+
+    .progress-track { background: var(--gray-200); border-radius: 999px; height: 8px; margin-bottom: 24px; overflow: hidden; }
+    .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: width 0.2s; }
+
+    #gate { display: none; background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); text-align: center; }
+    #gate h2 { color: var(--navy); font-size: 22px; margin-bottom: 10px; }
+    #gate input { width: 100%; padding: 13px 16px; border-radius: 8px; border: 1px solid var(--gray-200); font-size: 15px; font-family: inherit; margin-bottom: 12px; }
+
+    #results { display: none; }
+    .result-card { background: var(--white); border-radius: var(--radius); padding: 40px 32px; box-shadow: var(--shadow); text-align: center; }
+    .result-score { font-size: 48px; font-weight: 900; color: var(--navy); margin: 10px 0; }
+    .tier-label { display: inline-block; font-weight: 800; font-size: 15px; padding: 6px 16px; border-radius: 999px; margin-bottom: 16px; }
+    .tier-strong { background: #dcfce7; color: var(--green); }
+    .tier-mid { background: var(--gold-lt); color: #92400e; }
+    .tier-early { background: var(--sky); color: var(--blue); }
+
+    .result-cta { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--gray-200); }
+    .result-cta p { color: var(--gray-700); margin-bottom: 16px; font-size: 15px; }
+
+    footer.site-footer { background: var(--navy); color: rgba(255,255,255,0.55); text-align: center; padding: 32px 24px; font-size: 13px; margin-top: 40px; }
+    footer.site-footer a { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="index.html" class="nav-logo">Aero<span class="logo-aeo">AEO</span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="section-label">FREE · 2 MINUTES</span>
+  <h1>AEO Marketer Readiness Quiz</h1>
+  <p>10 quick questions. Find out where you stand before you commit to the full AEO Certified Marketer exam.</p>
+</section>
+
+<main>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <form id="quizForm"></form>
+
+  <div id="gate">
+    <h2>See your results</h2>
+    <p style="color:var(--gray-700);margin-bottom:16px;">Enter your email to see your score and personalized next step.</p>
+    <input type="text" id="qName" placeholder="Your name">
+    <input type="email" id="qEmail" placeholder="you@company.com" required>
+    <button class="btn-primary" style="width:100%;" onclick="showResults()">Show My Results →</button>
+  </div>
+
+  <div id="results">
+    <div class="result-card">
+      <div id="tierLabel" class="tier-label"></div>
+      <div class="result-score" id="scoreDisplay"></div>
+      <p id="resultText" style="color:var(--gray-700);"></p>
+      <div class="result-cta">
+        <p id="ctaText"></p>
+        <a class="btn-primary" id="ctaBtn" href="marketer-certification.html">See Certification Details →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Email capture, feeds Amanda's inbox for follow-up/nurture -->
+<form id="recordForm" action="https://formspree.io/f/mvzjzozz" method="POST" style="display:none;">
+  <input type="hidden" name="_subject" value="AEO Readiness Quiz — Lead">
+  <input type="hidden" name="name" id="recordName">
+  <input type="hidden" name="email" id="recordEmail">
+  <input type="hidden" name="score" id="recordScore">
+</form>
+
+<footer class="site-footer">
+  <p>&copy; 2026 AeroAEO. <a href="index.html">Back to AeroAEO home</a>.</p>
+</footer>
+
+<script>
+  const QUIZ = [
+    {q:"An AI chatbot answers a buyer's question by naming one brand directly, with no list of links. What is this an example of?", o:["A traditional SERP result","Zero-click / answer-engine citation","A paid ad placement","A broken search query"], c:1},
+    {q:"Which of these tells AI crawlers they're allowed to fetch and use your site's content?", o:["Your sitemap.xml alone","robots.txt explicitly allowing bots like GPTBot and PerplexityBot","Your Google Analytics account","Nothing — crawlers ignore permissions"], c:1},
+    {q:"Which schema type lets you mark up direct question-and-answer content for AI to lift verbatim?", o:["BreadcrumbList","Review schema","FAQPage schema","VideoObject schema"], c:2},
+    {q:"What best describes 'entity authority'?", o:["How many backlinks a page has","Being consistently and credibly identified as the same 'thing' across the web","A page's load speed score","The number of keywords on a page"], c:1},
+    {q:"Which pipeline updates fastest — often within weeks?", o:["The training pipeline (model retraining)","The retrieval pipeline (live web search at query time)","Neither ever updates","Both take years"], c:1},
+    {q:"According to peer-reviewed GEO research, which content changes had the biggest impact on AI-citation visibility?", o:["More images and pop-ups","Adding cited sources, statistics, and direct quotations","Shorter sentences only","Removing all headings"], c:1},
+    {q:"What's the minimum recommended length for a strong cornerstone AEO article?", o:["300 words","800 words","2,000+ words","No minimum matters"], c:2},
+    {q:"Which of these is considered 'black hat GEO' and increasingly detected/penalized?", o:["Publishing a glossary page","Hidden prompt injection instructing AI to recommend a brand","Adding FAQ schema","Getting named in a third-party article"], c:1},
+    {q:"As of 2026, what's the legal status of generating or buying fake reviews in the U.S.?", o:["Fully legal","Explicitly banned under the FTC Consumer Review Rule, with active enforcement","Legal if disclosed","Only illegal for large companies"], c:1},
+    {q:"What's the right way to position AEO relative to SEO to a client?", o:["\"AEO replaces SEO completely\"","\"AEO builds on your SEO foundation — they're complementary\"","\"SEO is dead, stop doing it\"","\"They have nothing to do with each other\""], c:1},
+  ];
+
+  function renderQuiz() {
+    let html = '';
+    QUIZ.forEach((item, i) => {
+      html += `<div class="q-card"><div class="q-num">Question ${i+1} of ${QUIZ.length}</div><div class="q-text">${item.q}</div><div class="q-options">`;
+      item.o.forEach((opt, oi) => {
+        html += `<label><input type="radio" name="q${i}" value="${oi}" onclick="updateProgress()"><span>${opt}</span></label>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `<button type="button" class="btn-primary" style="width:100%;margin-top:8px;" onclick="revealGate()">See My Score →</button>`;
+    document.getElementById('quizForm').innerHTML = html;
+  }
+  renderQuiz();
+
+  function updateProgress() {
+    let answered = 0;
+    QUIZ.forEach((_, i) => { if (document.querySelector(`input[name="q${i}"]:checked`)) answered++; });
+    document.getElementById('progressFill').style.width = Math.round((answered / QUIZ.length) * 100) + '%';
+  }
+
+  let finalScore = 0;
+  function revealGate() {
+    let correct = 0;
+    QUIZ.forEach((item, i) => {
+      const picked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (picked && parseInt(picked.value) === item.c) correct++;
+    });
+    finalScore = correct;
+    document.getElementById('quizForm').style.display = 'none';
+    document.getElementById('gate').style.display = 'block';
+    window.scrollTo({top: document.getElementById('gate').offsetTop - 80, behavior:'smooth'});
+  }
+
+  function showResults() {
+    const email = document.getElementById('qEmail').value.trim();
+    const name = document.getElementById('qName').value.trim();
+    if (!email) { alert('Please enter your email to see your results.'); return; }
+
+    document.getElementById('recordName').value = name;
+    document.getElementById('recordEmail').value = email;
+    document.getElementById('recordScore').value = finalScore + '/' + QUIZ.length;
+    try {
+      fetch('https://formspree.io/f/mvzjzozz', { method:'POST', headers:{'Accept':'application/json'}, body: new FormData(document.getElementById('recordForm')) });
+    } catch(e) {}
+
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('scoreDisplay').textContent = finalScore + ' / ' + QUIZ.length;
+
+    const tierEl = document.getElementById('tierLabel');
+    const textEl = document.getElementById('resultText');
+    const ctaEl = document.getElementById('ctaText');
+
+    if (finalScore >= 8) {
+      tierEl.className = 'tier-label tier-strong';
+      tierEl.textContent = 'Exam-Ready';
+      textEl.textContent = "You already know most of what's on the exam. You'd likely pass the full 60-question AEO Certified Marketer exam on your first attempt.";
+      ctaEl.textContent = "Skip the guesswork — lock in your certification now while founding pricing is still active.";
+    } else if (finalScore >= 5) {
+      tierEl.className = 'tier-label tier-mid';
+      tierEl.textContent = 'Solid Foundation';
+      textEl.textContent = "You've got real AEO knowledge, with a few gaps. The full study guide would fill those in fast before you sit the exam.";
+      ctaEl.textContent = "Enroll now — you get the full study guide plus unlimited exam attempts, so there's no risk in starting today.";
+    } else {
+      tierEl.className = 'tier-label tier-early';
+      tierEl.textContent = 'Just Getting Started';
+      textEl.textContent = "AEO is still new territory for you — which is exactly why the structured 8-module study guide exists, instead of piecing it together from scattered blog posts.";
+      ctaEl.textContent = "Start with the free AEO in 5 Days course, then come back for full certification when you're ready.";
+      document.getElementById('ctaBtn').href = 'aeo-in-5-days.html';
+      document.getElementById('ctaBtn').textContent = 'Start Free AEO in 5 Days →';
+    }
+  }
+</script>
+
+</body>
+</html>
