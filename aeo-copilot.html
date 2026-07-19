@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <title>AEO Copilot — Your AI AEO Advisor | AeroAEO</title>
+  <meta name="description" content="Chat with AEO Copilot: ask AEO questions, get ready-to-paste schema markup and FAQ content generated on the spot. Built on AeroAEO's certification curriculum.">
+  <meta name="author" content="Amanda Fouts">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aeroaeo.marketing/aeo-copilot.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AEO Copilot — Your AI AEO Advisor">
+  <meta property="og:description" content="Ask AEO questions, get real schema markup generated on the spot.">
+  <meta property="og:url" content="https://aeroaeo.marketing/aeo-copilot.html">
+  <meta property="og:site_name" content="AeroAEO">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is AEO Copilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AEO Copilot is a paid AI chat advisor built on AeroAEO's certification curriculum. It answers AEO questions and generates ready-to-paste schema markup and FAQ content on request." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Copilot different from the free Score Calculator or Radar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Radar and the Score Calculator diagnose problems. Copilot is conversational and can also generate the actual fix — schema markup, FAQ content, or heading rewrites — tailored to your specific business." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #0c1a3d; --navy-mid: #162454; --blue: #1d4ed8;
+      --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
+      --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
+      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10); --green: #16a34a; --red: #dc2626;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--gray-50); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); }
+
+    header.site-header { background: var(--navy); padding: 18px 24px; }
+    header.site-header .inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { color: var(--white); font-weight: 800; font-size: 20px; text-decoration:none; }
+    .nav-logo .logo-aeo { color: var(--gold); }
+    header.site-header nav a { color: rgba(255,255,255,0.78); font-size: 14px; font-weight: 500; margin-left: 20px; }
+
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3168 60%, #0d2247 100%); color: var(--white); padding: 48px 24px 40px; text-align: center; }
+    .hero .section-label { display: inline-block; background: var(--gold-lt); color: var(--navy); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 999px; margin-bottom: 16px; }
+    .hero h1 { font-size: 34px; margin-bottom: 12px; }
+    .hero p { color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* ── Paywall / landing ── */
+    #paywall .price-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px; text-align: center; margin-bottom: 24px; }
+    #paywall .amt { font-size: 44px; font-weight: 900; color: var(--navy); }
+    #paywall .amt span { font-size: 16px; font-weight: 500; color: var(--gray-500); }
+    #paywall ul { list-style: none; text-align: left; max-width: 380px; margin: 20px auto; }
+    #paywall li { padding: 7px 0; font-size: 15px; color: var(--gray-700); }
+    #paywall li::before { content: "✓ "; color: var(--green); font-weight: 800; }
+    .btn-primary { display: inline-block; background: var(--blue); color: var(--white); font-weight: 700; padding: 14px 28px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; text-decoration: none; }
+    .btn-primary:hover { opacity: 0.92; }
+
+    .access-box { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; }
+    .access-box h3 { color: var(--navy); margin-bottom: 14px; font-size: 16px; }
+    .access-box input { width: 100%; padding: 13px 16px; border-radius: 8px; border: 1px solid var(--gray-200); font-size: 15px; font-family: inherit; margin-bottom: 12px; }
+    #codeError { display: none; color: var(--red); font-size: 13px; margin-top: 8px; }
+
+    /* ── Chat UI ── */
+    #chatApp { display: none; }
+    .chat-window { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); height: 520px; display: flex; flex-direction: column; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 24px; }
+    .msg { max-width: 82%; margin-bottom: 16px; padding: 12px 16px; border-radius: 14px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; }
+    .msg-user { background: var(--blue); color: var(--white); margin-left: auto; border-bottom-right-radius: 4px; }
+    .msg-assistant { background: var(--gray-100); color: var(--text); margin-right: auto; border-bottom-left-radius: 4px; }
+    .msg-assistant code, .msg-assistant pre { background: var(--navy); color: var(--gold-lt); }
+    .msg pre { padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 12.5px; margin: 8px 0; }
+    .msg-loading { color: var(--gray-500); font-style: italic; }
+
+    .chat-input-row { display: flex; gap: 10px; padding: 16px; border-top: 1px solid var(--gray-200); }
+    .chat-input-row textarea { flex: 1; resize: none; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--gray-200); font-family: inherit; font-size: 15px; height: 46px; }
+    .chat-input-row button { flex-shrink: 0; }
+
+    .session-note { font-size: 12px; color: var(--gray-500); text-align: center; margin-top: 10px; }
+    #limitNote { display: none; background: var(--gold-lt); color: #92400e; border-radius: var(--radius); padding: 16px 20px; margin-top: 14px; font-size: 14px; text-align: center; }
+
+    .scope-note { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px 20px; margin-top: 20px; font-size: 13px; color: var(--gray-500); }
+
+    footer.site-footer { background: var(--navy); color: rgba(255,255,255,0.55); text-align: center; padding: 32px 24px; font-size: 13px; margin-top: 40px; }
+    footer.site-footer a { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 26px; }
+      .chat-window { height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="index.html" class="nav-logo">Aero<span class="logo-aeo">AEO</span></a>
+    <nav><a href="index.html">Home</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="section-label">AI-POWERED · GENERATES REAL DELIVERABLES</span>
+  <h1>AEO Copilot</h1>
+  <p>Ask it anything about AEO. It'll answer specifically, not generically — and when you ask, it generates ready-to-paste schema markup and FAQ content on the spot.</p>
+</section>
+
+<main>
+
+  <!-- ═══ PAYWALL (shown until access code is entered) ═══ -->
+  <div id="paywall">
+    <div class="price-card">
+      <div class="amt">$49 <span>one-time, lifetime access</span></div>
+      <ul>
+        <li>Unlimited AEO Q&A, grounded in AeroAEO's certification curriculum</li>
+        <li>Generates real JSON-LD schema markup tailored to your business</li>
+        <li>Drafts FAQ content optimized for AI extraction</li>
+        <li>No subscription — pay once, chat any time</li>
+      </ul>
+      <a class="btn-primary" href="https://buy.stripe.com/REPLACE-WITH-YOUR-COPILOT-PAYMENT-LINK" target="_blank" rel="noopener">Get Access — $49 ✈</a>
+    </div>
+
+    <div class="access-box">
+      <h3>Already purchased? Enter your access code</h3>
+      <input type="text" id="accessCode" placeholder="Access code (sent after payment)">
+      <input type="text" id="userName" placeholder="Your name">
+      <input type="email" id="userEmail" placeholder="you@company.com">
+      <button class="btn-primary" style="width:100%;" onclick="unlockChat()">Unlock Copilot →</button>
+      <p id="codeError">That access code isn't valid. Check your confirmation, or purchase above if you haven't yet.</p>
+    </div>
+  </div>
+
+  <!-- ═══ CHAT (shown after unlock) ═══ -->
+  <div id="chatApp">
+    <div class="chat-window">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-row">
+        <textarea id="chatInput" placeholder="Ask about schema, entity authority, robots.txt, or paste your homepage copy and ask for FAQ content..."></textarea>
+        <button class="btn-primary" id="sendBtn" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+    <p class="session-note" id="sessionNote">0 / 40 messages this session</p>
+    <div id="limitNote">You've hit this session's message limit. Refresh the page to start a new session — your access code still works.</div>
+  </div>
+
+  <div class="scope-note">
+    Copilot gives AEO guidance grounded in AeroAEO's framework, and can draft schema/FAQ content as a starting point — always review generated code before publishing it. For a full audited score, use the free <a href="aeo-radar.html">Radar scanner</a> or <a href="certification.html">certification program</a>.
+  </div>
+</main>
+
+<!-- Record session starts so Amanda has visibility into usage -->
+<form id="recordForm" action="https://formspree.io/f/mvzjzozz" method="POST" style="display:none;">
+  <input type="hidden" name="_subject" value="AEO Copilot — Session Started">
+  <input type="hidden" name="name" id="recordName">
+  <input type="hidden" name="email" id="recordEmail">
+</form>
+
+<footer class="site-footer">
+  <p>&copy; 2026 AeroAEO. <a href="index.html">Back to AeroAEO home</a>.</p>
+</footer>
+
+<script>
+  // ══════════════════════════════════════════════════════════
+  // Set this to your deployed Copilot Worker URL once live.
+  // Must match the ACCESS_CODE set in cloudflare-worker-copilot.js.
+  // See cloudflare-deployment-guide.md.
+  // ══════════════════════════════════════════════════════════
+  const WORKER_URL = "https://REPLACE-WITH-YOUR-COPILOT-WORKER-URL.workers.dev";
+  const MAX_SESSION_MESSAGES = 40;
+
+  let history = [];
+  let messageCount = 0;
+
+  // Auto-fill access code if it arrives via ?code=... (for a future Stripe-redirect thank-you flow)
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get('code');
+    if (codeParam) document.getElementById('accessCode').value = codeParam;
+  });
+
+  function unlockChat() {
+    const code = document.getElementById('accessCode').value.trim();
+    const name = document.getElementById('userName').value.trim();
+    const email = document.getElementById('userEmail').value.trim();
+    if (!code) { document.getElementById('codeError').style.display = 'block'; return; }
+
+    // Client-side check is just UX — the Worker re-validates server-side on every message.
+    document.getElementById('codeError').style.display = 'none';
+    window.__copilotCode = code;
+
+    if (email) {
+      document.getElementById('recordName').value = name;
+      document.getElementById('recordEmail').value = email;
+      try {
+        fetch('https://formspree.io/f/mvzjzozz', { method: 'POST', headers: {'Accept':'application/json'}, body: new FormData(document.getElementById('recordForm')) });
+      } catch (e) {}
+    }
+
+    document.getElementById('paywall').style.display = 'none';
+    document.getElementById('chatApp').style.display = 'block';
+    addMessage('assistant', "Hi! I'm AEO Copilot. Ask me anything about Answer Engine Optimization — schema markup, entity authority, the retrieval vs. training pipelines, whatever. I can also generate ready-to-paste schema or FAQ content if you tell me about your business and ask.");
+  }
+
+  function addMessage(role, content) {
+    const el = document.createElement('div');
+    el.className = 'msg msg-' + role;
+    el.innerHTML = formatContent(content);
+    document.getElementById('chatMessages').appendChild(el);
+    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+    return el;
+  }
+
+  function formatContent(text) {
+    // minimal safe formatting: escape HTML, then render ```code blocks```
+    const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return escaped.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    if (WORKER_URL.includes("REPLACE-WITH-YOUR-COPILOT-WORKER-URL")) {
+      addMessage('assistant', "Copilot's backend isn't deployed yet — see cloudflare-deployment-guide.md to finish setup.");
+      return;
+    }
+
+    if (messageCount >= MAX_SESSION_MESSAGES) {
+      document.getElementById('limitNote').style.display = 'block';
+      return;
+    }
+
+    input.value = '';
+    addMessage('user', text);
+    history.push({ role: 'user', content: text });
+    messageCount++;
+    document.getElementById('sessionNote').textContent = `${messageCount} / ${MAX_SESSION_MESSAGES} messages this session`;
+
+    const loadingEl = addMessage('assistant', '…thinking…');
+    loadingEl.classList.add('msg-loading');
+    document.getElementById('sendBtn').disabled = true;
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessCode: window.__copilotCode, messages: history }),
+      });
+      const data = await res.json();
+      loadingEl.remove();
+      if (!res.ok || data.error) {
+        addMessage('assistant', `⚠️ ${data.error || 'Something went wrong.'}`);
+        return;
+      }
+      addMessage('assistant', data.reply);
+      history.push({ role: 'assistant', content: data.reply });
+    } catch (err) {
+      loadingEl.remove();
+      addMessage('assistant', `⚠️ Request failed: ${err.message}`);
+    } finally {
+      document.getElementById('sendBtn').disabled = false;
+    }
+  }
+
+  document.getElementById('chatInput')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+</script>
+
+</body>
+</html>
