@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AEO Certified Marketer — Exam | AeroAEO</title>
+  <meta name="description" content="The AEO Certified Marketer exam — 60 questions, 80% to pass.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://aeroaeo.marketing/marketer-certification-exam.html">
+
+  <style>
+    :root {
+      --navy: #0c1a3d; --navy-mid: #162454; --blue: #1d4ed8; --blue-lt: #3b82f6;
+      --sky: #e0f2fe; --gold: #f59e0b; --gold-lt: #fef3c7; --white: #ffffff;
+      --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+      --gray-500: #64748b; --gray-700: #334155; --text: #0f172a;
+      --radius: 12px; --shadow: 0 4px 24px rgba(12,26,61,0.10);
+      --green: #16a34a; --red: #dc2626;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--gray-50); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); }
+
+    header.site-header { background: var(--navy); padding: 18px 24px; position: sticky; top: 0; z-index: 100; }
+    header.site-header .inner { max-width: 780px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -0.5px; text-decoration:none; }
+    .nav-logo .logo-aeo { color: var(--gold); }
+    .progress-pill { background: rgba(255,255,255,0.1); color: var(--gold-lt); font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
+
+    .intro-hero { background: var(--navy); color: var(--white); padding: 48px 24px 40px; text-align: center; }
+    .intro-hero h1 { font-size: 30px; margin-bottom: 12px; }
+    .intro-hero p { color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto 20px; }
+    .intro-hero .rules { background: rgba(255,255,255,0.08); border-radius: var(--radius); padding: 20px 24px; max-width: 480px; margin: 0 auto; text-align: left; font-size: 14px; }
+    .intro-hero .rules li { margin-bottom: 6px; list-style: none; }
+    .intro-hero .rules li::before { content: "✓ "; color: var(--gold); font-weight: 800; }
+
+    main { max-width: 720px; margin: 0 auto; padding: 40px 24px 100px; }
+
+    #candidate-form { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); max-width: 480px; margin: -20px auto 40px; }
+    #candidate-form input { width: 100%; padding: 13px 16px; border-radius: 8px; border: 1px solid var(--gray-200); font-size: 15px; font-family: inherit; margin-bottom: 14px; }
+    .btn-primary { display: inline-block; background: var(--blue); color: var(--white); font-weight: 700; padding: 13px 24px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; width: 100%; }
+    .btn-primary:hover { opacity: 0.92; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .q-card { background: var(--white); border-radius: var(--radius); padding: 26px 28px; margin-bottom: 16px; box-shadow: var(--shadow); }
+    .q-module { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--navy-mid); background: var(--gold-lt); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+    .q-text { font-size: 16px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+    .q-num { color: var(--gray-500); font-weight: 500; margin-right: 6px; }
+    .q-options label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 15px; color: var(--gray-700); }
+    .q-options label:hover { background: var(--gray-50); }
+    .q-options input { margin-top: 3px; flex-shrink: 0; }
+
+    .submit-bar { position: sticky; bottom: 0; background: var(--white); border-top: 1px solid var(--gray-200); padding: 16px 24px; text-align: center; margin: 0 -24px; }
+    .submit-bar .btn-primary { max-width: 320px; }
+    .submit-bar p { font-size: 13px; color: var(--gray-500); margin-top: 8px; }
+
+    #results { display: none; }
+    .result-card { background: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-lg, var(--shadow)); text-align: center; }
+    .result-score { font-size: 56px; font-weight: 900; margin: 8px 0; }
+    .pass .result-score { color: var(--green); }
+    .fail .result-score { color: var(--red); }
+    .result-status { font-size: 20px; font-weight: 800; }
+    .pass .result-status { color: var(--green); }
+    .fail .result-status { color: var(--red); }
+    .module-breakdown { text-align: left; margin: 28px 0; }
+    .module-breakdown .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
+    .module-breakdown .row:last-child { border-bottom: none; }
+
+    #certificate { display: none; margin-top: 32px; }
+    .cert-frame { border: 6px solid var(--gold); border-radius: 16px; background: linear-gradient(135deg, var(--navy) 0%, #1a3168 60%, #0d2247 100%); color: var(--white); padding: 48px 32px; text-align: center; }
+    .cert-frame .cert-label { font-size: 12px; letter-spacing: 0.15em; color: var(--gold); font-weight: 800; margin-bottom: 18px; }
+    .cert-frame h2 { font-size: 26px; margin-bottom: 6px; }
+    .cert-frame .cert-name { font-size: 32px; font-weight: 900; margin: 18px 0; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 8px; }
+    .cert-frame .cert-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 20px; }
+    .badge-img { width: 140px; margin: 20px auto 0; }
+
+    .embed-box { background: var(--navy); border-radius: var(--radius); padding: 24px; margin-top: 20px; color: rgba(255,255,255,0.85); text-align: left; }
+    .embed-box code { display: block; background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; font-size: 11px; color: var(--gold-lt); overflow-x: auto; white-space: pre; margin-top: 10px; }
+
+    @media print {
+      header.site-header, .submit-bar, #candidate-form, .q-card, .module-breakdown, .embed-box, main > .result-status-wrap { display: none !important; }
+      #certificate { display: block !important; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a href="marketer-certification.html" class="nav-logo">Aero<span class="logo-aeo">AEO</span></a>
+    <span class="progress-pill" id="progressPill">0 / 60 answered</span>
+  </div>
+</header>
+
+<section class="intro-hero">
+  <h1>AEO Certified Marketer Exam</h1>
+  <p>60 questions across 8 modules. Answer every question, then submit for instant scoring.</p>
+  <ul class="rules">
+    <li>80% (48/60) required to pass</li>
+    <li>Untimed — take your time, review the <a href="marketer-certification-study-guide.html" style="color:var(--gold);">study guide</a> if you need it</li>
+    <li>Enter your name below before you begin so your certificate is ready the moment you pass</li>
+  </ul>
+</section>
+
+<main>
+  <div id="candidate-form">
+    <label style="display:block;font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:6px;">Your name (as it should appear on your certificate)</label>
+    <input type="text" id="candidateName" placeholder="Jane Marketer" required>
+    <label style="display:block;font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:6px;">Your email</label>
+    <input type="email" id="candidateEmail" placeholder="you@company.com" required>
+    <button class="btn-primary" onclick="startExam()">Begin Exam ✈</button>
+  </div>
+
+  <form id="examForm" style="display:none;"></form>
+
+  <div class="submit-bar" id="submitBar" style="display:none;">
+    <button class="btn-primary" onclick="gradeExam()" style="max-width:320px;">Submit Exam for Grading</button>
+    <p>You can leave questions blank and still submit — blanks are scored as incorrect.</p>
+  </div>
+
+  <div id="results">
+    <div class="result-card" id="resultCard">
+      <div class="result-status" id="resultStatus"></div>
+      <div class="result-score" id="resultScore"></div>
+      <p id="resultSub" style="color:var(--gray-500);"></p>
+      <div class="module-breakdown" id="moduleBreakdown"></div>
+      <p id="failNote" style="display:none;color:var(--gray-700);">Review the modules above where you scored lowest, then retake the exam any time by reloading this page — there's no limit on attempts.</p>
+    </div>
+
+    <div id="certificate">
+      <div class="cert-frame">
+        <div class="cert-label">AEROAEO · CERTIFICATION PROGRAM</div>
+        <h2>AEO Certified Marketer</h2>
+        <div class="cert-name" id="certName"></div>
+        <p>has successfully passed the AEO Certified Marketer examination,<br>demonstrating verified competency in Answer Engine Optimization strategy,<br>technical implementation, and AI-visibility measurement.</p>
+        <img class="badge-img" src="assets/aeo-certified-marketer-badge.svg" alt="AEO Certified Marketer badge">
+        <div class="cert-meta" id="certMeta"></div>
+      </div>
+      <div class="embed-box">
+        <strong>Add this to your LinkedIn or resume:</strong>
+        <p style="font-size:13px;margin-top:6px;">Print this page (Cmd/Ctrl+P → Save as PDF) to save your certificate, or embed the badge on your own site:</p>
+        <code>&lt;a href="https://aeroaeo.marketing/marketer-certification.html" target="_blank" rel="noopener"&gt;
+  &lt;img src="https://aeroaeo.marketing/assets/aeo-certified-marketer-badge.svg"
+       alt="AEO Certified Marketer" width="160" height="160"&gt;
+&lt;/a&gt;</code>
+        <button class="btn-primary" style="margin-top:16px;" onclick="window.print()">Print / Save Certificate as PDF</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Hidden Formspree submission so Amanda has a record of attempts/passes -->
+<form id="recordForm" action="https://formspree.io/f/mvzjzozz" method="POST" style="display:none;">
+  <input type="hidden" name="_subject" value="AEO Certified Marketer — Exam Result">
+  <input type="hidden" name="name" id="recordName">
+  <input type="hidden" name="email" id="recordEmail">
+  <input type="hidden" name="score" id="recordScore">
+  <input type="hidden" name="result" id="recordResult">
+</form>
+
+<script>
+  // ─── QUESTION BANK: 60 questions across 8 modules ───
+  const QUESTIONS = [
+    // MODULE 1 — AEO Fundamentals (8)
+    {m:"1. Fundamentals", q:"What does AEO stand for?", o:["Answer Engine Optimization","AI Engine Output","Automated Engagement Optimization","Answer Extraction Overview"], c:0},
+    {m:"1. Fundamentals", q:"What is the primary difference between a traditional search engine and an answer engine?", o:["Answer engines only work on mobile","Traditional search returns ranked links; answer engines return one synthesized answer","Answer engines don't use crawlers","Traditional search is always faster"], c:1},
+    {m:"1. Fundamentals", q:"Why is being \"ranked #4\" meaningless in AEO?", o:["Because AI engines don't rank content at all","An AI answer either includes a brand or doesn't — there's no partial credit for being ranked but not cited","Because AEO never uses rankings, ever","Because #4 is actually the best position in AEO"], c:1},
+    {m:"1. Fundamentals", q:"What behavioral shift is driving AEO's importance?", o:["Buyers increasingly research and shortlist products using AI tools before visiting a website","Search engines are shutting down entirely","All buyers now exclusively use voice assistants","Traditional websites have been banned"], c:0},
+    {m:"1. Fundamentals", q:"Why do early AEO movers tend to hold their position for a long time?", o:["Competitors are legally blocked from optimizing","AI training cycles are slow, so citation associations are durable once established","AI models never update after release","First movers get a permanent discount from Google"], c:1},
+    {m:"1. Fundamentals", q:"What is the correct order of the three-phase AEO process?", o:["Optimize, Audit, Scale","Scale, Audit, Optimize","Audit, Optimize, Scale","Audit, Scale, Optimize"], c:2},
+    {m:"1. Fundamentals", q:"Which best describes \"zero-click authority\"?", o:["A page that loads instantly","A brand being recommended directly by an AI without the user ever clicking through to a website","A page with no links on it","A form that requires no clicks to submit"], c:1},
+    {m:"1. Fundamentals", q:"Which of these are explicitly considered \"answer engines\"?", o:["Only ChatGPT","Only Google","ChatGPT, Perplexity, Google AI Overviews, Copilot, and voice assistants","Only voice assistants"], c:2},
+
+    // MODULE 2 — Technical AEO & Schema (8)
+    {m:"2. Technical & Schema", q:"Which schema type establishes the core \"who you are\" entity information?", o:["FAQPage","Organization/WebSite schema","Review schema","BreadcrumbList"], c:1},
+    {m:"2. Technical & Schema", q:"Why is FAQPage schema considered high-leverage for AEO?", o:["It improves page load speed","It provides direct Q&A pairs AI systems can lift and cite verbatim","It's a legal requirement","It blocks competitor crawlers"], c:1},
+    {m:"2. Technical & Schema", q:"What happens if a page is not reachable by AI crawlers?", o:["It ranks lower but can still be cited","It cannot be cited at all, regardless of content quality","It gets a manual penalty from OpenAI","Nothing — crawler access doesn't matter"], c:1},
+    {m:"2. Technical & Schema", q:"Which of these is a retrieval/search crawler (fetches content live, at query time)?", o:["GPTBot", "CCBot", "PerplexityBot", "Google-Extended"], c:2},
+    {m:"2. Technical & Schema", q:"Which of these is a training crawler (ingests content during scheduled crawls)?", o:["ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "OAI-SearchBot"], c:1},
+    {m:"2. Technical & Schema", q:"What's the recommended heading strategy for AEO?", o:["Use as many H1 tags as possible","Avoid headings so text flows naturally","Clear H1–H3 hierarchy, phrased as the real questions users ask AI","Use only H4 tags and below"], c:2},
+    {m:"2. Technical & Schema", q:"Why should AEO content avoid hedge phrases like \"we believe\"?", o:["They increase word count unnecessarily","Flat, sourced, declarative statements extract more cleanly for AI citation","Google penalizes opinion words directly","They are grammatically incorrect"], c:1},
+    {m:"2. Technical & Schema", q:"What is the first, highest-leverage technical fix in the retrieval pipeline?", o:["Buying ads","Unblocking AI crawlers in robots.txt","Redesigning the homepage","Changing the domain name"], c:1},
+
+    // MODULE 3 — Entity Authority & Content (8)
+    {m:"3. Entity & Content", q:"What is an \"entity\" in the AEO sense?", o:["Any page on a website","A distinct, recognized \"thing\" — a person, company, product, or concept — that AI systems identify consistently","A type of schema markup only","A synonym for backlink"], c:1},
+    {m:"3. Entity & Content", q:"What does NAP consistency refer to?", o:["Name, Address, Phone/contact details matching exactly everywhere a brand appears","A page load performance metric","A type of FAQ schema","Number of Active Pages"], c:0},
+    {m:"3. Entity & Content", q:"Why does a third-party mention often matter more for AEO than a backlink?", o:["Backlinks are illegal in some countries","A mention signals \"this is a known entity in this category,\" closer to what a model learns during training","Mentions are always paid, so they carry more weight","There is no meaningful difference between the two"], c:1},
+    {m:"3. Entity & Content", q:"What is the recommended minimum length for a cornerstone content piece?", o:["500 words","800 words","2,000+ words","100 words"], c:2},
+    {m:"3. Entity & Content", q:"How often should cornerstone content be refreshed?", o:["Never, once published it's final","At least annually, since stale pages quietly lose citation share","Every single day","Only when a competitor updates theirs"], c:1},
+    {m:"3. Entity & Content", q:"Per Princeton's GEO research (Aggarwal et al., KDD 2024), which three content changes produced the biggest visibility gains?", o:["More images, more ads, more pop-ups","Adding cited sources, adding statistics, and adding direct quotations","Shorter paragraphs, more emojis, colorful fonts","Removing all outbound links"], c:1},
+    {m:"3. Entity & Content", q:"What is the \"Equalizer Effect\" found in that research?", o:["All sites gained equally regardless of starting position","Lower-ranked, less-established sources saw disproportionately larger gains from optimization than already-dominant ones","Only large brands benefited from AEO","The effect canceled out with no measurable impact"], c:1},
+    {m:"3. Entity & Content", q:"Why do glossary pages get cited frequently by AI engines?", o:["They map directly onto common \"what is X\" query patterns","They are required by Google","They contain the most backlinks of any page type","They're always the shortest pages on a site"], c:0},
+
+    // MODULE 4 — Retrieval vs. Training (7)
+    {m:"4. Retrieval vs Training", q:"What triggers the retrieval pipeline?", o:["A scheduled monthly crawl","A live web search happening at the moment a question is asked","A manual submission to OpenAI","Nothing; it runs constantly regardless of queries"], c:1},
+    {m:"4. Retrieval vs Training", q:"Which platforms rely primarily on the retrieval pipeline?", o:["Perplexity, Google AI Overviews, and ChatGPT/Copilot in browsing or search mode","Only static print encyclopedias","None; all AI answers come from training only","Only offline chatbots"], c:0},
+    {m:"4. Retrieval vs Training", q:"What does benchmarking suggest about a large share of ChatGPT's retrieval-based citations?", o:["They are randomly generated","They trace back to content already ranking well in the underlying search index, particularly Bing","They come exclusively from Wikipedia","They are unrelated to any search engine"], c:1},
+    {m:"4. Retrieval vs Training", q:"How quickly can retrieval-pipeline changes show up in AI answers?", o:["Within minutes","Within 4–8 weeks","Within 3 years","They never show up"], c:1},
+    {m:"4. Retrieval vs Training", q:"What triggers the training pipeline to reflect a content change?", o:["An immediate real-time index update","The model being retrained on a fresh crawl, which can take months","A single tweet mentioning the brand","Refreshing the browser"], c:1},
+    {m:"4. Retrieval vs Training", q:"Which pipeline does \"entity authority\" primarily influence?", o:["Training pipeline","Retrieval pipeline only","Neither pipeline","Only paid advertising placements"], c:0},
+    {m:"4. Retrieval vs Training", q:"What is the correct six-step priority stack, in order?", o:["Entity authority, crawlers, technical SEO, cornerstone content, declarative writing, sources/stats","Unblock crawlers, shore up technical SEO, add sources/stats/quotes, write declaratively, build entity authority, keep content current","Buy ads, redesign site, ignore crawlers, write casually, delete content, launch podcast","Delete old content, ignore SEO, focus only on video, buy backlinks, spam forums, wait"], c:1},
+
+    // MODULE 5 — Audit & Certification Framework (7)
+    {m:"5. Audit & Certification", q:"In the 10-point AEO audit framework, how many points is each criterion worth?", o:["5 points","10 points","20 points","1 point"], c:1},
+    {m:"5. Audit & Certification", q:"What score range qualifies a site as \"AI-Optimized\" and certification-eligible?", o:["0–39","40–59","60–79","80–100"], c:3},
+    {m:"5. Audit & Certification", q:"Which of these is NOT one of the 10 certification criteria?", o:["FAQ Schema","Active Backlinks & Citations","Number of employees at the company","Sitemap Submission"], c:2},
+    {m:"5. Audit & Certification", q:"What does a score of 40–59 indicate?", o:["AI-Optimized","AI-Invisible","Emerging — basic technical foundation, missing authority signals","Enterprise-tier"], c:2},
+    {m:"5. Audit & Certification", q:"What should a certified AEO marketer do after identifying an audit gap?", o:["Ignore it if the client doesn't ask","Explain it in plain language and prioritize the fix using the retrieval-vs-training priority stack","Immediately terminate the client relationship","Only fix gaps that are free"], c:1},
+    {m:"5. Audit & Certification", q:"Which criterion evaluates whether a sitemap has been properly submitted?", o:["Structured Headings","Sitemap Submission — to Search Console and/or Bing Webmaster Tools","Case Study","Glossary Page"], c:1},
+    {m:"5. Audit & Certification", q:"What does \"AI-Invisible\" (0–39) mean for a site?", o:["It's the best possible score","It is essentially unreachable/uncited by AI answer engines","It means the site is intentionally hidden from humans","It refers only to mobile visibility"], c:1},
+
+    // MODULE 6 — Tools & Measurement (6)
+    {m:"6. Tools & Measurement", q:"What is a practical way to directly check whether a brand is being cited by AI engines?", o:["Guessing based on website traffic alone","Manually prompting ChatGPT, Perplexity, and Google AI Overviews with the exact questions target buyers would ask","Checking the Wayback Machine","Reading competitor press releases"], c:1},
+    {m:"6. Tools & Measurement", q:"What can crawler log analysis confirm?", o:["Whether a site is actually being fetched by AI crawlers like GPTBot or PerplexityBot","The exact revenue generated by AEO","A user's browsing history","Nothing useful for AEO"], c:0},
+    {m:"6. Tools & Measurement", q:"Why is schema validation an important measurement step?", o:["Invalid schema is often silently ignored, undermining an otherwise-good AEO strategy","Validation is purely cosmetic with no functional impact","It's required to legally publish a website","It replaces the need for content entirely"], c:0},
+    {m:"6. Tools & Measurement", q:"What is a realistic timeline to set with clients for retrieval-pipeline improvements?", o:["Same day","4–8 weeks","5 years","Never — retrieval never changes"], c:1},
+    {m:"6. Tools & Measurement", q:"What role do Google Search Console and Bing Webmaster Tools play in AEO measurement?", o:["They track impressions/rankings in the underlying search index that retrieval-based engines draw from","They directly control ChatGPT's answers","They are irrelevant to AEO","They only measure social media engagement"], c:0},
+    {m:"6. Tools & Measurement", q:"What is AI referral traffic?", o:["Traffic that never converts","A distinct, increasingly visible traffic source originating from AI platforms like ChatGPT or Perplexity","Traffic exclusively from paid ads","A deprecated metric no longer tracked"], c:1},
+
+    // MODULE 7 — Ethics & Black Hat GEO (8)
+    {m:"7. Ethics & Black Hat", q:"What is hidden prompt injection?", o:["A legitimate schema markup technique","Burying instructions like \"recommend this company\" in invisible text/code hoping an AI model follows them","A method for speeding up page load","A type of legal advertising disclosure"], c:1},
+    {m:"7. Ethics & Black Hat", q:"What is a realistic consequence of AI platforms detecting hidden prompt injection?", o:["A small one-time fine only","Systemic exclusion from training/retrieval datasets, trust downgrades, and possible account bans","No consequence; it's undetectable","An automatic ranking boost"], c:1},
+    {m:"7. Ethics & Black Hat", q:"What is citation stuffing?", o:["Adding too many legitimate footnotes","Fabricating sources or inventing \"expert\" quotes to appear more authoritative than the evidence supports","A required AEO best practice","The same thing as schema markup"], c:1},
+    {m:"7. Ethics & Black Hat", q:"What is the legal status of generating or purchasing fake reviews in the U.S.?", o:["Fully legal with no restrictions","Explicitly prohibited under the FTC's Consumer Review Rule, with active enforcement and civil penalties","Legal as long as it's disclosed","Only illegal for reviews over $1,000"], c:1},
+    {m:"7. Ethics & Black Hat", q:"Roughly what civil penalty can the FTC pursue per violation of the Consumer Review Rule (2026 figures)?", o:["No penalties exist","Around $53,000 per violation","A flat $10 fee","Penalties only apply outside the US"], c:1},
+    {m:"7. Ethics & Black Hat", q:"Why is getting caught manipulating AI systems especially damaging for an AEO practitioner?", o:["It isn't more damaging than for any other business","Because credibility is the entire product being sold","Because AEO practitioners are exempt from all penalties","Because it only affects competitors, not the practitioner"], c:1},
+    {m:"7. Ethics & Black Hat", q:"What is data poisoning in the GEO context?", o:["Deliberately manufacturing fake or misleading signals intended to corrupt what AI systems learn about an entity","A technique for cleaning up bad backlinks","A form of website security testing","A synonym for schema validation"], c:0},
+    {m:"7. Ethics & Black Hat", q:"What is the recommended ethical alternative to black-hat GEO tactics?", o:["Doing nothing at all","Real cornerstone content, real third-party mentions, and real certifications/audits","Buying fake reviews but disclosing them quietly","Using prompt injection only for \"good\" causes"], c:1},
+
+    // MODULE 8 — AEO vs SEO Strategy (8)
+    {m:"8. AEO vs SEO", q:"What is the correct relationship between AEO and SEO?", o:["AEO completely replaces SEO","They are complementary disciplines; strong AEO reinforces traditional SEO signals","They are unrelated and never interact","SEO makes AEO unnecessary"], c:1},
+    {m:"8. AEO vs SEO", q:"In the AEO vs. SEO comparison, what replaces \"10 blue links\"?", o:["20 blue links","One AI-generated answer","A single paid ad","A video carousel only"], c:1},
+    {m:"8. AEO vs SEO", q:"Why is weak technical SEO a ceiling on AEO results?", o:["It isn't — SEO and AEO are completely independent","Retrieval-based AI answers still run through an underlying search index, so poor SEO limits AEO's ceiling","AEO doesn't use crawlers at all","AI engines ignore search indexes entirely"], c:1},
+    {m:"8. AEO vs SEO", q:"What is the recommended client-facing framing for AEO relative to SEO?", o:["\"AEO replaces your SEO investment entirely\"","\"AEO builds on your SEO foundation\"","\"SEO is obsolete and should be abandoned\"","\"AEO and SEO should never be discussed together\""], c:1},
+    {m:"8. AEO vs SEO", q:"Why do AEO specialist agencies tend to outperform generalists who treat AEO as a bolt-on tactic?", o:["Because specialization brings a dedicated audit framework, priority stack, and measurement approach","Because bolt-on tactics are illegal","Because generalist agencies are legally barred from AEO","There's no actual performance difference"], c:0},
+    {m:"8. AEO vs SEO", q:"What replaces \"declining click rates\" in the AEO comparison table?", o:["Increasing click rates only","Zero-click authority","No change at all","Click rates become irrelevant to everyone equally"], c:1},
+    {m:"8. AEO vs SEO", q:"What is \"semantic SEO\" as referenced in this course's positioning of AEO vs. SEO?", o:["A form of paid search advertising","Content and structural strategy oriented around meaning/topics/entities — an area of overlap with AEO","A synonym for keyword stuffing","A deprecated Google feature with no relevance today"], c:1},
+    {m:"8. AEO vs SEO", q:"Why is the analogy to dedicated SEO agencies from a decade ago relevant to AEO agencies today?", o:["There is no meaningful analogy","Just as focused SEO specialists once outperformed generalists, focused AEO specialists are positioned to outperform generalists bolting AEO onto existing retainers","SEO and AEO agencies are legally required to merge","The analogy only applies to enterprise companies"], c:1},
+  ];
+
+  const PASS_THRESHOLD = 0.8;
+  let candidateName = "", candidateEmail = "";
+
+  function startExam() {
+    candidateName = document.getElementById('candidateName').value.trim();
+    candidateEmail = document.getElementById('candidateEmail').value.trim();
+    if (!candidateName || !candidateEmail) { alert('Please enter your name and email before starting.'); return; }
+
+    document.getElementById('candidate-form').style.display = 'none';
+    const form = document.getElementById('examForm');
+    let html = '';
+    QUESTIONS.forEach((item, i) => {
+      html += `<div class="q-card" data-idx="${i}">
+        <span class="q-module">${item.m}</span>
+        <div class="q-text"><span class="q-num">${i+1}.</span>${item.q}</div>
+        <div class="q-options">`;
+      item.o.forEach((opt, oi) => {
+        html += `<label><input type="radio" name="q${i}" value="${oi}" onclick="updateProgress()"> <span>${opt}</span></label>`;
+      });
+      html += `</div></div>`;
+    });
+    form.innerHTML = html;
+    form.style.display = 'block';
+    document.getElementById('submitBar').style.display = 'block';
+    window.scrollTo({top: form.offsetTop - 80, behavior: 'smooth'});
+  }
+
+  function updateProgress() {
+    let answered = 0;
+    QUESTIONS.forEach((_, i) => { if (document.querySelector(`input[name="q${i}"]:checked`)) answered++; });
+    document.getElementById('progressPill').textContent = `${answered} / ${QUESTIONS.length} answered`;
+  }
+
+  function gradeExam() {
+    let correct = 0;
+    const moduleStats = {};
+    QUESTIONS.forEach((item, i) => {
+      if (!moduleStats[item.m]) moduleStats[item.m] = {correct: 0, total: 0};
+      moduleStats[item.m].total++;
+      const picked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (picked && parseInt(picked.value) === item.c) {
+        correct++;
+        moduleStats[item.m].correct++;
+      }
+    });
+
+    const pct = correct / QUESTIONS.length;
+    const passed = pct >= PASS_THRESHOLD;
+
+    document.getElementById('examForm').style.display = 'none';
+    document.getElementById('submitBar').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+
+    const card = document.getElementById('resultCard');
+    card.className = 'result-card ' + (passed ? 'pass' : 'fail');
+    document.getElementById('resultStatus').textContent = passed ? 'PASSED' : 'NOT YET PASSED';
+    document.getElementById('resultScore').textContent = correct + ' / ' + QUESTIONS.length;
+    document.getElementById('resultSub').textContent = Math.round(pct*100) + '% — ' + (passed ? '80% (48/60) required — you cleared it.' : '80% (48/60) required to pass.');
+    document.getElementById('failNote').style.display = passed ? 'none' : 'block';
+
+    let breakdownHtml = '';
+    Object.keys(moduleStats).forEach(m => {
+      const s = moduleStats[m];
+      breakdownHtml += `<div class="row"><span>${m}</span><span>${s.correct} / ${s.total}</span></div>`;
+    });
+    document.getElementById('moduleBreakdown').innerHTML = breakdownHtml;
+
+    // Record the attempt (works even without a real backend, via Formspree)
+    document.getElementById('recordName').value = candidateName;
+    document.getElementById('recordEmail').value = candidateEmail;
+    document.getElementById('recordScore').value = correct + '/' + QUESTIONS.length + ' (' + Math.round(pct*100) + '%)';
+    document.getElementById('recordResult').value = passed ? 'PASSED' : 'FAILED';
+    try {
+      fetch('https://formspree.io/f/mvzjzozz', {
+        method: 'POST',
+        headers: {'Accept': 'application/json'},
+        body: new FormData(document.getElementById('recordForm'))
+      });
+    } catch (e) { /* non-blocking */ }
+
+    if (passed) {
+      document.getElementById('certificate').style.display = 'block';
+      document.getElementById('certName').textContent = candidateName;
+      const today = new Date();
+      document.getElementById('certMeta').textContent = 'Issued ' + today.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}) + ' · Score: ' + Math.round(pct*100) + '% · AeroAEO Certification Program';
+    }
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+
+</body>
+</html>
