@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AEO Certified by AeroAEO, 2026">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1a3d"/>
+      <stop offset="60%" stop-color="#1a3168"/>
+      <stop offset="100%" stop-color="#0d2247"/>
+    </linearGradient>
+  </defs>
+  <circle cx="160" cy="160" r="156" fill="url(#bg)" stroke="#f59e0b" stroke-width="4"/>
+  <circle cx="160" cy="160" r="138" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 6" opacity="0.6"/>
+
+  <g transform="translate(118,72) scale(1.6)">
+    <path d="M2 20L18 6L28 10L14 24L2 20Z" fill="#f59e0b" opacity="0.95"/>
+    <path d="M14 24L10 28L8 22L14 24Z" fill="#f59e0b" opacity="0.6"/>
+    <path d="M18 6L24 4L28 10L18 6Z" fill="#ffffff" opacity="0.5"/>
+    <circle cx="20" cy="12" r="2" fill="#ffffff" opacity="0.8"/>
+  </g>
+
+  <text x="160" y="175" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="900" fill="#ffffff">AEO</text>
+  <text x="160" y="202" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">CERTIFIED</text>
+  <text x="160" y="228" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#f59e0b">VERIFIED BY AEROAEO</text>
+  <text x="160" y="248" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,0.65)">aeroaeo.marketing &#8226; 2026</text>
+</svg>
